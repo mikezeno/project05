@@ -1,13 +1,11 @@
 import React from 'react'
 import HomeIcon from '@material-ui/icons/Home';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExploreIcon from '@material-ui/icons/Explore';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import PersonIcon from '@material-ui/icons/Person';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import ListAltRoundedIcon from '@material-ui/icons/ListAltRounded';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 export const NavData = [
@@ -50,10 +48,5 @@ export const NavData = [
         title: "Login",
         icon: <LockOpenIcon />,
         link: "/login"
-    },
-    {
-        title: "Movies",
-        icon: <LocalMoviesIcon />,
-        link: "/reviews"
     },
 ]

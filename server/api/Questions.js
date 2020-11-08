@@ -8,7 +8,7 @@ const questionRouter = Router();
 const getQuestions = async (req, resp) => {
     const dbconn = await getConnection();
     try {
-        console.log('Attemping to fetch questions...')
+        console.log('Attemping to fetch Questions...')
         const sqlSelect = 'SELECT * FROM questions';
         dbconn.query(sqlSelect, (err, result) => {
             if (err) {

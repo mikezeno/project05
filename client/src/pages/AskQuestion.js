@@ -14,7 +14,7 @@ export default function AskQuestion() {
     const userRef = useRef();
     const bodyRef = useRef();
 
-    const submitPost = () => {
+    const submitQuestion = () => {
         Axios.post('/question/ask', {
             title: title,
             body: body,
@@ -22,6 +22,14 @@ export default function AskQuestion() {
           // categoryid: categoryid
             
         })
+
+        //Add to reducer
+        // setMovieList([
+        //     ...movieList,
+        //     { name: movie, review: review }
+        //   ]);
+
+
         titleRef.current.value = ''
         bodyRef.current.value = ''
         userRef.current.value = ''
@@ -47,7 +55,7 @@ export default function AskQuestion() {
                 <textarea placeholder="Enter your question..." ref={bodyRef} onChange={ (e) => {
                     setBody(e.target.value);
                 }}/>
-                <button onClick={submitPost}>Submit</button>
+                <button onClick={submitQuestion}>Submit</button>
             </div>
         </div>
     )
