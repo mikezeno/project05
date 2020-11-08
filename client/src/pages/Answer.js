@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 export default function Answer() {
 
-    let { questionid } = useParams()
+    const { questionid } = useParams()
 
     const [question, setQuestion] = useState({})
     const [answer, setAnswer] = useState({})
@@ -17,7 +17,7 @@ export default function Answer() {
     const bodyRef = useRef();
 
     useEffect(() => {
-        Axios.get(`/question/get/${id}`).then((resp) => {
+        Axios.get(`/question/get/${questionid}`).then((resp) => {
             console.log(resp.data)
             setQuestion(
                 {
@@ -34,25 +34,36 @@ export default function Answer() {
 
 
     const submitAnswer = () => {
-        Axios.post('/answer/add', {
-            body: body,
-            userid: userid,
-            questionid: questionid
-        })
 
-        //Add to reducer
-        // setMovieList([
-        //     ...movieList,
-        //     { name: movie, review: review }
-        //   ]);
+        if (body != '') {
+            setAnswer({
+                body: body,
+                userid: answerUserid,
+                questionid: questionid
+            });
 
-        quesitonRef.current.value = ''
-        userRef.current.value = ''
-        bodyRef.current.value = ''
-        bodyRef.current.focus();
-
-        //Redirect to question view
-    }
+            Axios.post('/answer/add', answer
+            // {
+            //     body: body,
+            //     userid: answerUserid,
+            //     questionid: questionid
+            // }
+            );
+    
+            //Add to reducer
+            // setMovieList([
+            //     ...movieList,
+            //     { name: movie, review: review }
+            //   ]);
+    
+            quesitonRef.current.value = '';
+            userRef.current.value = '';
+            bodyRef.current.value = '';
+            bodyRef.current.focus();
+    
+            //Redirect to question view
+        };
+    };
 
     useEffect( () => {
         bodyRef.current.focus();
@@ -61,10 +72,8 @@ export default function Answer() {
     return (
         <div className="page createPost">
             <div className="uploadPost">
-                <label>Question</label>
-                <input type="number" placeholder="QuestionId" ref={quesitonRef} onChange={(e) => {
-                    setQuestionid(e.target.value);
-                }} />
+                <label>{question.title}</label>
+                <p>{question.body}</p>
                 <label>UserId</label>
                 <input type="number" placeholder="UserId" ref={userRef} onChange={(e)=> {
                     setUserid(e.target.value);
@@ -73,7 +82,7 @@ export default function Answer() {
                 <textarea placeholder="Write your answer..." ref={bodyRef} onChange={ (e) => {
                     setBody(e.target.value);
                 }}/>
-                <button onClick={submitAnswer}>Submit</button>
+                <button onClick={submitAnswer}>Submit Answer</button>
             </div>
         </div>
     )

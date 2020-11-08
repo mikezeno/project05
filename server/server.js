@@ -3,7 +3,6 @@ import express from 'express'; //const express = require('express')
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
-import reviewRoutes from './api/Reviews.js';
 import userRoutes from './api/Users.js'
 import questionRoutes from './api/Questions.js'
 
@@ -25,6 +24,5 @@ app.listen(port, () => {
 });
 
 // Routes
-app.use('/reviews', reviewRoutes);
 app.use('/user', userRoutes);
 app.use('/question', questionRoutes);
