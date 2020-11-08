@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import AskQuestion from './pages/AskQuestion';
 import Question from './pages/Question';
 import Questions from './pages/Questions';
+import Answer from './pages/Answer';
 
 function App() {
 

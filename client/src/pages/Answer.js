@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 export default function Answer() {
 
-    const { questionid } = useParams()
+    const { id } = useParams()
 
     const [question, setQuestion] = useState({})
     const [answer, setAnswer] = useState({})
@@ -17,7 +17,7 @@ export default function Answer() {
     const bodyRef = useRef();
 
     useEffect(() => {
-        Axios.get(`/question/get/${questionid}`).then((resp) => {
+        Axios.get(`/question/get/${id}`).then((resp) => {
             console.log(resp.data)
             setQuestion(
                 {
@@ -39,15 +39,15 @@ export default function Answer() {
             setAnswer({
                 body: body,
                 userid: answerUserid,
-                questionid: questionid
+                questionid: id
             });
 
-            Axios.post('/answer/add', answer
-            // {
-            //     body: body,
-            //     userid: answerUserid,
-            //     questionid: questionid
-            // }
+            Axios.post('/answer/add',
+            {
+                body: body,
+                userid: answerUserid,
+                questionid: id
+            }
             );
     
             //Add to reducer
@@ -56,7 +56,6 @@ export default function Answer() {
             //     { name: movie, review: review }
             //   ]);
     
-            quesitonRef.current.value = '';
             userRef.current.value = '';
             bodyRef.current.value = '';
             bodyRef.current.focus();

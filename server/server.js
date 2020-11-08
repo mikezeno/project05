@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import userRoutes from './api/Users.js'
 import questionRoutes from './api/Questions.js'
+import answerRoutes from './api/Answers.js'
 
 // Constants
 const app = express();
@@ -26,3 +27,4 @@ app.listen(port, () => {
 // Routes
 app.use('/user', userRoutes);
 app.use('/question', questionRoutes);
+app.use('/answer', answerRoutes);
