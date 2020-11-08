@@ -9,7 +9,7 @@ export default function Nav() {
                 {
                     NavData.map((val, key) => {
                         return (
-                            <li className="navrow" id={window.location.pathname === val.link ? "active" : ""} key={key} onClick={()=> {window.location.pathname = val.link}}>
+                            <li className="navrow" id={window.location.pathname === val.link ? "active" : ""} key={key} onClick={() => { window.location.pathname = val.link }}>
                                 <div id="icon">{val.icon}</div>
                                 <div id="category">{val.title}</div>
                             </li>

@@ -14,18 +14,31 @@ export default function Blog() {
 
             setPostList(response.data);
         });
-    }, [postList]);
+    }, []);
 
     const likePost = (id) => {
         Axios.put(`/blog/like/${id}`)
+        console.log('likePost:id='+id)
+        let tempList = postList
+        tempList.forEach( row => {
+            console.log('likePost:row.id='+row.id)
+        })
+        let post = tempList.find( row => row.id == id)
+        console.log('post='+post)
+        if (post)
+            post.likes++;
+        setPostList( [...tempList])
     };
 
     return (
-        <div className="page BlogPage">
-            <div className="post-container">
+        <div className="page">
+            <div>
+                <button onClick={(e) => history.push('/createpost')}>New Question</button>
+            </div>
+            <div className="content">
                 {postList.map((val, key) => {
                     return (
-                        <div className="post" key={val.id} >
+                        <div className="card" key={val.id} >
                             <div className="inner-post" onClick={() => {history.push(`/post/${val.id}`)}}>
                                 <h2>{val.title}</h2>
                                 <p>{val.post_text.length > 500 ? val.post_text.substring(0,500) + '...' : val.post_text}</p>

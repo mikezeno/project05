@@ -21,12 +21,12 @@ export default function Post() {
                 }
             )
         })
-    }, [post]);
+    }, []);
 
     return (
-        <div className="page BlogPage">
-            <div className="post-container">
-                <div className="post">
+        <div className="page">
+            <div className="content">
+                <div className="card">
                     <h2>{post.title}</h2>
                     <h5>{post.user_name}</h5>
                     <p>{post.post_text}</p>
