@@ -11,7 +11,7 @@ export default function Question() {
 
     useEffect(() => {
         console.log('inside react the Id is =', id)
-        Axios.get(`/questions/get/${id}`).then((resp) => {
+        Axios.get(`/question/get/${id}`).then((resp) => {
             console.log(resp.data)
             setQuestion(
                 {

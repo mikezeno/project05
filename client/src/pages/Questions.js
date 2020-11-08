@@ -5,21 +5,21 @@ import { useHistory } from 'react-router-dom'
 
 export default function Questions() {
 
-    const [questionList, setQuestionList] = useState()
+    const [questionList, setQuestionList] = useState([])
     const history = useHistory();
 
     useEffect(() => {
         Axios.get('/question/get').then((resp) => {
-            console.log(resp.data);
+            console.log('inside questions use effect',resp.data);
 
             setQuestionList(resp.data);
         });
     }, []);
 
     const voteQuestion = (id) => {
-        Axios.put(`/questions/vote/${id}`)
+        Axios.put(`/question/vote/${id}`)
         let prevList = questionList
-        let question = prevList.find( ques => ques.id == id)
+        let question = prevList.find( ques => ques.id === id)
         if (question)
             question.votes++;
         setQuestionList( [...prevList])
@@ -28,7 +28,7 @@ export default function Questions() {
     return (
         <div className="page">
             <div>
-                <button onClick={(e) => history.push('/questions/ask')}>Ask Question</button>
+                <button onClick={(e) => history.push('/question/ask')}>Ask Question</button>
             </div>
             <div className="content">
                 {questionList.map((val, key) => {

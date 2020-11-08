@@ -5,9 +5,9 @@ import Nav from './pages/Nav';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Reviews from './pages/Reviews';
-import Blog from './pages/Blog'
-import CreatePost from './pages/CreatePost'
-import Post from './pages/Post'
+import AskQuestion from './pages/AskQuestion';
+import Question from './pages/Question';
+import Questions from './pages/Questions';
 
 function App() {
 
@@ -16,11 +16,11 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/blog" render={(props) => <Blog />} />
-          <Route path="/createpost" render={(props) => <CreatePost />} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/question/ask" component={AskQuestion} />
           <Route path="/register" render={(props) => <Register />} />
-          <Route path="/post/:id" render={(props) => <Post />} />
+          <Route path="/question/:id" render={(props) => <Question />} />
+          <Route path="/questions" render={(props) => <Questions />} />
           <Route path="/reviews" component={Reviews} />
         </Switch>
       </div>

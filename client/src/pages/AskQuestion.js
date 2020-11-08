@@ -2,26 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
 
-export default function CreatePost() {
+export default function AskQuestion() {
 
     const [title, setTitle] = useState('')
-    const [userName, setUserName] = useState('')
-    const [postText, setPostText] = useState('')
+    const [body, setBody] = useState('')
+    const [userid, setUserid] = useState('')
+
 
 
     const titleRef = useRef();
     const userRef = useRef();
-    const postRef = useRef();
+    const bodyRef = useRef();
 
     const submitPost = () => {
-        Axios.post('/blog/create', {
+        Axios.post('/question/ask', {
             title: title,
-            userName: userName,
-            postText: postText
+            body: body,
+            userid: userid,
+          // categoryid: categoryid
+            
         })
         titleRef.current.value = ''
+        bodyRef.current.value = ''
         userRef.current.value = ''
-        postRef.current.value = ''
         titleRef.current.focus();
     }
 
@@ -36,13 +39,13 @@ export default function CreatePost() {
                 <input type="text" placeholder="Title" ref={titleRef} onChange={(e) => {
                     setTitle(e.target.value);
                 }} />
-                <label>Username</label>
-                <input type="text" placeholder="Username" ref={userRef} onChange={(e)=> {
-                    setUserName(e.target.value);
+                <label>UserId</label>
+                <input type="number" placeholder="UserId" ref={userRef} onChange={(e)=> {
+                    setUserid(e.target.value);
                 }} />
-                <label>Post Text</label>
-                <textarea placeholder="Post text..." ref={postRef} onChange={ (e) => {
-                    setPostText(e.target.value);
+                <label>Body</label>
+                <textarea placeholder="Enter your question..." ref={bodyRef} onChange={ (e) => {
+                    setBody(e.target.value);
                 }}/>
                 <button onClick={submitPost}>Submit</button>
             </div>

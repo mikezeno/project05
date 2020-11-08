@@ -1,44 +1,30 @@
 import React from 'react'
 import HomeIcon from '@material-ui/icons/Home';
-import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExploreIcon from '@material-ui/icons/Explore';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import PersonIcon from '@material-ui/icons/Person';
-import ListIcon from '@material-ui/icons/List';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import ListAltRoundedIcon from '@material-ui/icons/ListAltRounded';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 export const NavData = [
-    {
-        title: "Register",
-        icon: <ListAltRoundedIcon />,
-        link: "/register"
-    },
-    {
-        title: "Login",
-        icon: <ListAltRoundedIcon />,
-        link: "/login"
-    },
     {
         title: "Home",
         icon: <HomeIcon />,
         link: "/"
     },
     {
-        title: "Movies",
-        icon: <LocalMoviesIcon />,
-        link: "/reviews"
+        title: "Questions", 
+        icon: <QuestionAnswerIcon />,
+        link: "/questions"
     },
     {
-        title: "Blog",
-        icon: <ListAltRoundedIcon />,
-        link: "/blog"
-    },
-    {
-        title: "Create Post",
-        icon: <FormatQuoteIcon />,
-        link: "/createpost"
+        title: "Ask Question",
+        icon: <LibraryAddIcon />,
+        link: "/question/ask"
     },
     {
         title: "Explore", //list of all 
@@ -54,5 +40,20 @@ export const NavData = [
         title: "Profile", 
         icon: <PersonIcon />,
         link: "/user"
+    },
+    {
+        title: "Register",
+        icon: <GroupAddIcon />,
+        link: "/register"
+    },
+    {
+        title: "Login",
+        icon: <LockOpenIcon />,
+        link: "/login"
+    },
+    {
+        title: "Movies",
+        icon: <LocalMoviesIcon />,
+        link: "/reviews"
     },
 ]

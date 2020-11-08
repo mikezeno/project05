@@ -1,14 +1,14 @@
 import Router from 'express-promise-router';
 import { getConnection } from '../data/db.js'
 
-// blog router
-const blogrouter = Router();
+// Question router
+const questionRouter = Router();
 
-// get all blog posts
-const getBlogPosts = async (req, resp) => {
+// get all questions
+const getQuestions = async (req, resp) => {
     const dbconn = await getConnection();
     try {
-        const sqlSelect = 'SELECT * FROM posts';
+        const sqlSelect = 'SELECT * FROM questions';
         dbconn.query(sqlSelect, (err, result) => {
             if (err) {
                 console.log(err);
@@ -28,7 +28,7 @@ const getBlogPosts = async (req, resp) => {
 };
 
 // find a blog post
-const findBlogPost = async (req, resp) => {
+const findQuestion = async (req, resp) => {
     const dbconn = await getConnection();
     const id = req.params.id
     const sqlSelect = 'SELECT * FROM posts WHERE id = ?';
@@ -40,24 +40,36 @@ const findBlogPost = async (req, resp) => {
     });
 };
 
-// create new blog post
-const addBlogPost = async (req, resp) => {
+// create new question
+const addQuestion = async (req, resp) => {
     const dbconn = await getConnection();
-    const title = req.body.title;
-    const postText = req.body.postText;
-    const userName = req.body.userName
-    console.log('title:', title, 'post text:', postText, 'username:', userName)
-    const sqlInsert = 'INSERT INTO posts (title, post_text, user_name) VALUES (?, ?, ?)';
-    dbconn.query(sqlInsert, [title, postText, userName], (err, result) => {
-        if (err) {
-            console.log(err);
+    try {
+        const title = req.body.title;
+        const body = req.body.body;
+        const userid = req.body.userid
+        const categoryid = 1
+        console.log('title:', title, 'body:', body, 'userid:', userid, 'categoryid', categoryid)
+        const sqlInsert = 'INSERT INTO questions (title, body, userid, categoryid) VALUES (?, ?, ?, ?)';
+        dbconn.query(sqlInsert, [title, body, userid, categoryid], (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+            console.log('Question created:', result);
+        });
+    }
+    catch (err) {
+        console.log('addQuestion Error:', err);
+    }
+    finally {
+        if (dbconn) {
+            dbconn.end();
+            console.log('Connection closed')
         }
-        console.log(result);
-    });
+    };
 };
 
 // delete a blog post
-const deleteBlogPost = async (req, resp) => {
+const deleteQuestion = async (req, resp) => {
     const dbconn = await getConnection();
     const id = req.params.id
     const sqlDelete = 'DELETE FROM posts WHERE id = ?';
@@ -68,7 +80,7 @@ const deleteBlogPost = async (req, resp) => {
 
 
 // update a blog post
-const updateBlogPost = async (req, resp) => {
+const updateQuestion = async (req, resp) => {
     const dbconn = await getConnection();
     console.log('trying to update blog post...')
     const id = req.body.id;
@@ -80,7 +92,7 @@ const updateBlogPost = async (req, resp) => {
 };
 
 // like a blog post
-const likeBlogPost = async (req, resp) => {
+const voteQuestion = async (req, resp) => {
     const dbconn = await getConnection();
     const id = req.params.id;
     const sqlUpdate = 'UPDATE posts SET likes = likes + 1 WHERE id = ?';
@@ -93,11 +105,11 @@ const likeBlogPost = async (req, resp) => {
 };
 
 // blog routes
-blogrouter.get('/get', getBlogPosts);
-blogrouter.get('/get/:id', findBlogPost);
-blogrouter.post('/create', addBlogPost);
-blogrouter.delete('/delete/:id', deleteBlogPost);
-blogrouter.put('/edit', updateBlogPost);
-blogrouter.put('/like/:id', likeBlogPost);
+questionRouter.get('/get', getQuestions);
+questionRouter.get('/get/:id', findQuestion);
+questionRouter.post('/ask', addQuestion);
+questionRouter.delete('/delete/:id', deleteQuestion);
+questionRouter.put('/edit', updateQuestion);
+questionRouter.put('/vote/:id', voteQuestion);
 
-export default blogrouter;
+export default questionRouter;

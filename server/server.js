@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import reviewRoutes from './api/Reviews.js';
-import blogRoutes from './api/Blog.js'
 import userRoutes from './api/Users.js'
+import questionRoutes from './api/Questions.js'
 
 // Constants
 const app = express();
@@ -26,5 +26,5 @@ app.listen(port, () => {
 
 // Routes
 app.use('/reviews', reviewRoutes);
-app.use('/blog', blogRoutes);
 app.use('/user', userRoutes);
+app.use('/question', questionRoutes);
