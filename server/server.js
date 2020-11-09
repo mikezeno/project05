@@ -1,5 +1,6 @@
 // Imports 
 import express from 'express'; //const express = require('express')
+import session from 'express-session';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
@@ -17,7 +18,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+app.use(
+    session({
+        key: "userId",
+        secret: "subscribe",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60 * 60 * 24
+        }
+    })
+);
+
 
 // Listener
 app.listen(port, () => {

@@ -14,7 +14,7 @@ npm install axios                 **make API requests to server
 #download latest version of node and install node (12.19.0 or higher)
 #after installing use "node --version" to confirm version
 
-Optional: npx express-generator expressserver   **create express server template
+npx express-generator expressserver   **Optional: create express server template
 
 npm init                          **create node server
 npm init -y                       **create node server all defaults
@@ -24,6 +24,8 @@ npm install --save uuid           **adds uuid module
 npm install --save ejs            **adds ejs express template engine
 npm install express-promise-router   **adds express promise router
 npm install --save cors
+npm install bcrypt                **hash passwords
+npm install express-session
 
 #create index.js
 #google "express resources middleware"

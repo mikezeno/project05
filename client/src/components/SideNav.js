@@ -1,0 +1,22 @@
+import React from 'react'
+import '../style/App.css'
+import { NavData } from './NavData'
+
+export default function SideNav() {
+    return (
+        <div className="sidenav">
+            <ul className="navlist">
+                {
+                    NavData.map((val, key) => {
+                        return (
+                            <li className="navrow" id={window.location.pathname === val.link ? "active" : ""} key={key} onClick={() => { window.location.pathname = val.link }}>
+                                <div id="icon">{val.icon}</div>
+                                <div id="category">{val.title}</div>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+    );
+}

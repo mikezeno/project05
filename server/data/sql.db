@@ -1,6 +1,6 @@
-****
+****************
 Database Scripts
-***
+****************
 
 --Create user table
 CREATE TABLE `forumdb`.`users` (
