@@ -26,20 +26,41 @@ export default function Login() {
     };
 
     return (
-        <div className="page">
-            <div className="createPost">
-                <div className="uploadPost">
+        <div className="container">
+            <div className="landing-content">
+                <div className="row justify-content-center mb-5">
                     <h1>Login</h1>
-                    <input type="text" placeholder="Username..." onChange={(e) => {
-                        setUserName(e.target.value);
-                    }} />
-                    <input type="password" placeholder="Password..." onChange={(e) => {
-                        setPassword(e.target.value);
-                    }} />
-                    <button onClick={login}>Login</button>
-                    <div className="statusMsg">
-                        {statusMsg}
-                    </div>
+                </div>
+
+                <div className="row justify-content-center mr-5 pr-3">
+                    <h5>Enter your username and password:</h5>
+                </div>
+                <div className="form">
+                    <form>
+                        <div className="form-row">
+                            <div className="form-group col-lg-12">
+                                <input type="text" placeholder="Username..." onChange={(e) => {
+                                    setUserName(e.target.value);
+                                }} />
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <input type="password" placeholder="Password..." onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }} />
+
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <button className="btn btn-block btn-primary" type="button" onClick={login}>Login</button>
+                                <div className="statusMsg">
+                                    {statusMsg}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
