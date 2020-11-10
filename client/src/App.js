@@ -7,6 +7,12 @@ import Landing from './components/Landing';
 import Header from './components/Header';
 import Login from './components/Login'
 import Register from './components/Register'
+import AskQuestion from './components/AskQuestion';
+import Question from './components/Question';
+import Questions from './components/Questions';
+import Answer from './components/Answer';
+import Test from './components/Test';
+import Nav from './components/Nav';
 
 function App() {
 
@@ -27,12 +33,17 @@ useEffect(() => {
     <BrowserRouter>
       <div className="App">
         <Header />
-        {loginStatus && <h1 className="page">Logged In</h1>}
+        <Nav /> 
         <Switch>
-          <Route path="/main" component={Main} />
+          <Route path="/" exact component={Main} />
           <Route path="/landing" component={Landing} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/test" component={Test} />
+          <Route path="/questions" component={Questions} />
+          <Route path="/question/ask" component={AskQuestion} />
+          <Route path="/question/:id" render={(props) => <Question />} />
+          <Route path="/answer/question/:id" render={(props) => <Answer />} />
         </Switch>
       </div>
     </BrowserRouter>

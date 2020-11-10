@@ -17,22 +17,22 @@ export const NavData = [
     {
         title: "Arts & Entertainment", 
         icon: '',
-        link: "/questions"
+        link: "/questions/arts"
     },
     {
         title: "Hobbies & Crafts", 
         icon: '',
-        link: "/questions"
+        link: "/questions/hobbies"
     },
     {
         title: "Travel", 
         icon: '',
-        link: "/questions"
+        link: "/questions/travel"
     },
     {
         title: "Philosophy", 
         icon: '',
-        link: "/questions"
+        link: "/questions/philosphy"
     },
     {
         title: "Questions", 

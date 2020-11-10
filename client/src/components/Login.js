@@ -31,7 +31,6 @@ export default function Login() {
                 <div className="row justify-content-center mb-5">
                     <h1>Login</h1>
                 </div>
-
                 <div className="row justify-content-center mr-5 pr-3">
                     <h5>Enter your username and password:</h5>
                 </div>
@@ -49,7 +48,6 @@ export default function Login() {
                                 <input type="password" placeholder="Password..." onChange={(e) => {
                                     setPassword(e.target.value);
                                 }} />
-
                             </div>
                         </div>
                         <div className="form-row">

@@ -4,7 +4,7 @@ import { NavData } from './NavData'
 
 export default function Nav() {
     return (
-        <div className="sidenav">
+        <div className="sidenav sticky-offset">
             <ul className="navlist">
                 {
                     NavData.map((val, key) => {

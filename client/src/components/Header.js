@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         // site header
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <span className="navbar-brand">
                 <img src={sitelogo} width="75" height="50" className="d-inline-block align-top" alt="Site logo" loading="lazy"></img>
                 <span className="mb-0 h1">AskHow</span>

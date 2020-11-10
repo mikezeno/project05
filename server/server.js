@@ -17,7 +17,7 @@ app.set('view engine', 'ejs'); //probably don't need
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser("secretcode"));
 app.use(cors({
     origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -26,7 +26,7 @@ app.use(cors({
 app.use(
     session({
         key: "userId",
-        secret: "subscribe",
+        secret: "secretcode",
         resave: false,
         saveUninitialized: false,
         cookie: {
