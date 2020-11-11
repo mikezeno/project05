@@ -336,17 +336,22 @@ nav li {
   border-radius: 15px;
 }
 
-#askButton {
+.main-button {
   border-radius: 30px;
-  margin: 5px;
+  
   border: 1px solid black;
   background-color: #125A87;
 }
 
-#ask-li:hover {
+#askButton {
+margin: 5px;
+}
+
+#askButton-li:hover {
   background-color: #2f4050;
 }
 
-#askButton:hover {
+.main-button:hover {
   box-shadow: 1px 1px 8px #1da1f2;
+  background-color: #125A87;
 }

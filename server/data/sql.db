@@ -28,8 +28,12 @@ CREATE TABLE `forumdb`.`categories` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
 
-insert into categories (category) values ('general');
-
+insert into categories (category) values ("Food & Cooking");
+insert into categories (category) values ("Health & Relationships");
+insert into categories (category) values ("Hobbies & Crafts");
+insert into categories (category) values ("Home & Garden");
+insert into categories (category) values ("Pets & Animals");
+insert into categories (category) values ("Travel & Work");
 
 --create questions table
 CREATE TABLE `forumdb`.`questions` (

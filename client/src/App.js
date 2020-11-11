@@ -51,7 +51,7 @@ function App() {
         </aside>
         <main>
           <Switch>
-            <Route path="/app/answer/question/:id" component={AddAnswer} />
+            <Route path="/app/answer/:questionid" component={AddAnswer} />
             <Route path="/app/question/add" component={AddQuestion} />
             <Route path="/app/question/:id" component={Question} />
             <Route path="/app/ask" component={AddQuestion} />

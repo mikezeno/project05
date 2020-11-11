@@ -75,34 +75,59 @@ export default function AddQuestion() {
     return (
         <div className="page">
             <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <div className="form">
-                            <div className="form-box">
-                                <label>Title</label>
-                                <input type="text" placeholder="Title" ref={titleRef} onChange={(e) => {
-                                    setTitle(e.target.value);
-                                }} />
+                <div className="row justify-content-center">
+                    <h1>Ask a question</h1>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-8">
+                        <form>
+                            <div className="form-group">
+                                <label for="questiontitle">Title</label>
+                                <input type="text" className="form-control" id="questiontitle" placeholder="Summarize your question..."
+                                    ref={titleRef} onChange={(e) => {
+                                        setTitle(e.target.value);
+                                    }} />
                                 <div>{validation.titleStatus}</div>
-                                <label>UserId</label>
-                                <input type="number" placeholder="UserId" ref={userRef} onChange={(e) => {
-                                    setUserid(e.target.value);
-                                }} />
-                                <div>{validation.userStatus}</div>
-                                <label>Body</label>
-                                <textarea placeholder="Enter your question..." ref={bodyRef} onChange={(e) => {
-                                    setBody(e.target.value);
-                                }} />
-                                <div>{validation.bodyStatus}</div>
-                                <button onClick={submitQuestion}>Submit</button>
                             </div>
-                        </div>
+                            <div className="form-group">
+                                <label for="question">Question</label>
+                                <textarea className="form-control" id="quesiton" rows="3" placeholder="Describe your question in detail..."
+                                    ref={bodyRef} onChange={(e) => {
+                                        setBody(e.target.value);
+                                    }}></textarea>
+                                <div>{validation.bodyStatus}</div>
+                            </div>
+                            <div className="form-group">
+                                <label for="Category">Category</label>
+                                <select className="form-control" id="Category">
+                                    <option>Arts & Entertainment</option>
+                                    <option>Computers & Electronics</option>
+                                    <option>Finance & Business</option>
+                                    <option>Food & Cooking</option>
+                                    <option>Health & Relationships</option>
+                                    <option>Hobbies & Crafts</option>
+                                    <option>Home & Garden</option>
+                                    <option>Pets & Animals</option>
+                                    <option>Travel & Work</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label for="user">User</label>
+                                <input type="number" className="form-control" id="user" placeholder="UserId"
+                                    ref={userRef} onChange={(e) => {
+                                        setUserid(e.target.value);
+                                    }} />
+                                <div>{validation.userStatus}</div>
+                            </div>
+                            <div className="form-group">
+                                <button type="button" class="main-button btn btn-primary btn-lg btn-block" onClick={submitQuestion}>Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
-
-
         </div>
-
     )
 }

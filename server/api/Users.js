@@ -15,7 +15,7 @@ const createUser = async (req, resp) => {
     console.log('Attemping to create user...')
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const username = req.body.username.toLowerCase();
+    const username = req.body.username
     const password = req.body.password;
     const sqlInsert = 'INSERT INTO users (firstname, lastname, username, password) VALUES (?, ?, ?, ?)';
     const sqlSelect = 'SELECT count(*) AS count FROM users WHERE username = ?'
