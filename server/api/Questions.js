@@ -9,7 +9,7 @@ const getQuestions = async (req, resp) => {
     const dbconn = await getConnection();
     try {
         console.log('Attemping to fetch questions...')
-        const sqlSelect = 'SELECT * FROM questions';
+        const sqlSelect = 'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, u.username AS username FROM questions q LEFT JOIN users u ON u.id = q.userid ORDER BY createdate DESC';
         dbconn.query(sqlSelect, (err, result) => {
             if (err) {
                 console.log('Database error in getQuestions: ' + err);
