@@ -8,12 +8,11 @@
 
 .page {
   position: absolute;
-  top: 5vh;
+  top: 10vh;
   right: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  
   justify-content: center;
 }
 
@@ -123,7 +122,7 @@ nav li {
 .navlist .navrow:hover {
   cursor: pointer;
   background-color: #293846;
-  color: #1da1f2;
+  color: white;
 }
 
 .navlist #active {
@@ -319,4 +318,35 @@ nav li {
 .page-header {
   height: 250px;
   background-color: #293846;
+}
+
+.category-box {
+  background-color: #15202B;
+  border: 0.5px solid rgb(197, 196, 196);
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+.category-box .cat-cell {
+  margin: 1rem;
+}
+
+.category-box .cat-cell:hover {
+  box-shadow: 1px 1px 5px #1da1f2;
+  border-radius: 15px;
+}
+
+#askButton {
+  border-radius: 30px;
+  margin: 5px;
+  border: 1px solid black;
+  background-color: #125A87;
+}
+
+#ask-li:hover {
+  background-color: #2f4050;
+}
+
+#askButton:hover {
+  box-shadow: 1px 1px 8px #1da1f2;
 }
