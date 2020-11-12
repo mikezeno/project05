@@ -10,7 +10,7 @@ import DeckIcon from '@material-ui/icons/Deck';
 import PetsIcon from '@material-ui/icons/Pets';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 
-export default function Explore() {
+export default function ExplorePage() {
 
     let history = useHistory();
 
@@ -25,51 +25,51 @@ export default function Explore() {
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}> <MovieCreationIcon /> Arts & Entertainment</Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/1')}> <MovieCreationIcon /> Arts & Entertainment</Link>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><ComputerIcon /> Computers & Electronics </Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/2')}><ComputerIcon /> Computers & Electronics </Link>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><MonetizationOnIcon /> Finance & Business </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><FastfoodIcon /> Food & Cooking </Link>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><FavoriteBorderIcon /> Health & Relationships </Link>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><BrushIcon /> Hobbies & Crafts </Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/3')}><MonetizationOnIcon /> Finance & Business </Link>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><DeckIcon /> Home & Garden </Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/4')}><FastfoodIcon /> Food & Cooking </Link>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><PetsIcon /> Pets & Animals </Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/5')}><FavoriteBorderIcon /> Health & Relationships </Link>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/questions/:catid')}><FlightTakeoffIcon /> Travel & Work </Link>
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/6')}><BrushIcon /> Hobbies & Crafts </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/7')}><DeckIcon /> Home & Garden </Link>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/8')}><PetsIcon /> Pets & Animals </Link>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/9')}><FlightTakeoffIcon /> Travel & Work </Link>
                                     </div>
                                 </div>
                             </div>

@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
 
-export default function AddQuestion() {
+export default function AskQuestion() {
 
-    // state
+    // states
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
+    const [category, setCategory] = useState(1);
     const [userid, setUserid] = useState('')
     const [validation, setValidation] = useState([])
 
@@ -15,18 +16,23 @@ export default function AddQuestion() {
     const userRef = useRef();
     const bodyRef = useRef();
 
+    // hooks
+    useEffect(() => {
+        titleRef.current.focus();
+    }, [titleRef])
+
+    // post question to server
     const submitQuestion = () => {
         setValidation([])
         if (titleRef.current.value === '' || bodyRef.current.value === '' || userRef.current.value === '') {
             validateForm();
         }
         else {
-            Axios.post('/question/ask', {
+            Axios.post('/question/add', {
                 title: title,
                 body: body,
                 userid: userid,
-                // categoryid: categoryid
-
+                categoryid: category
             })
 
             //Add to reducer
@@ -47,10 +53,7 @@ export default function AddQuestion() {
 
     }
 
-    useEffect(() => {
-        titleRef.current.focus();
-    }, [titleRef])
-
+    // validate form fields
     const validateForm = () => {
         if (bodyRef.current.value === '') {
             let prevState = validation;
@@ -99,16 +102,18 @@ export default function AddQuestion() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Category">Category</label>
-                                <select className="form-control" id="Category">
-                                    <option>Arts & Entertainment</option>
-                                    <option>Computers & Electronics</option>
-                                    <option>Finance & Business</option>
-                                    <option>Food & Cooking</option>
-                                    <option>Health & Relationships</option>
-                                    <option>Hobbies & Crafts</option>
-                                    <option>Home & Garden</option>
-                                    <option>Pets & Animals</option>
-                                    <option>Travel & Work</option>
+                                <select className="form-control" id="Category" value={category} onChange={ (e) => {
+                                    setCategory(e.target.value);
+                                }}>
+                                    <option value="1">Arts & Entertainment</option>
+                                    <option value="2">Computers & Electronics</option>
+                                    <option value="3">Finance & Business</option>
+                                    <option value="4">Food & Cooking</option>
+                                    <option value="5">Health & Relationships</option>
+                                    <option value="6">Hobbies & Crafts</option>
+                                    <option value="7">Home & Garden</option>
+                                    <option value="8">Pets & Animals</option>
+                                    <option value="9">Travel & Work</option>
                                 </select>
                             </div>
 

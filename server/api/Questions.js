@@ -202,7 +202,7 @@ const voteQuestion = async (req, resp) => {
 questionRouter.get('/get', getQuestions);
 questionRouter.get('/get/:id', findQuestion);
 questionRouter.get('/get/cat/:id', getQuestionsByCategory);
-questionRouter.post('/ask', addQuestion);
+questionRouter.post('/add', addQuestion);
 questionRouter.delete('/delete/:id', deleteQuestion);
 questionRouter.put('/edit', updateQuestion);
 questionRouter.put('/vote/:id', voteQuestion);

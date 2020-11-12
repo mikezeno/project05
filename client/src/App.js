@@ -5,14 +5,14 @@ import Axios from 'axios'
 import LoginPage from './pages/LoginPage';
 import Register from './pages/RegisterPage';
 import FrontPage from './pages/FrontPage';
-import AddQuestion from './pages/AddQuestion';
 import QuestionEdit from './pages/QuestionEdit';
 import QuestionList from './pages/QuestionList';
 import TestLogin from './pages/TestLogin';
 import NavMenu from './components/NavMenu';
 import Header from './components/Header';
-import Explore from './pages/ExplorePage';
+import ExplorePage from './pages/ExplorePage';
 import QuestionPage from './pages/QuestionPage';
+import AskQuestion from './pages/AskQuestion';
 // import { createStore } from 'redux';
 // import { Provider } from 'react-redux'
 // import { reducer } from './redux/reducers';
@@ -51,15 +51,14 @@ function App() {
         </aside>
         <main>
           <Switch>
-            <Route path="/app/questions/:catid" component={QuestionList} />
-            <Route path="/app/question/edit/:id" component={QuestionEdit} />
-            <Route path="/app/question/add" component={AddQuestion} />
-            <Route path="/app/question/answer/:id" component={QuestionPage} />
+          {/* <Route path="/app/home" component={Home} /> */}
+            <Route path="/app/explore" component={ExplorePage} />
+            <Route path="/app/category/:catid" component={QuestionList} />
+            <Route path="/app/question/:id/answer" component={QuestionPage} />
             <Route path="/app/question/:id" component={QuestionPage} />
-            
-            
-            <Route path="/app/explore" component={Explore} />
-            <Redirect to={`${match.url}`} />
+            <Route path="/app/edit/:id" component={QuestionEdit} />
+            <Route path="/app/ask" component={AskQuestion} />
+            <Redirect to={`/app`} />
             {/* <Route exact path={props.match.path} component={BrowseUsersPage} />
             <Route path={`${match.path}/add`} component={AddUserPage} />
             <Route path={`${match.path}/:userId/edit`} component={EditUserPage} />
