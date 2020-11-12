@@ -11,11 +11,16 @@ export default function QuestionList() {
     const [category, setCategory] = useState('')
     const history = useHistory();
     const { catid } = useParams();
+    const [hideList, setHideList] = useState(false);
 
     useEffect(() => {
         Axios.get(`/question/get/cat/${catid}`).then((resp) => {
-            setCategory(resp.data[0].category);
-            setQuestionList(resp.data);
+            if (resp.data.length === 0) {
+                setHideList(true)
+            } else {
+                setCategory(resp.data[0].category);
+                setQuestionList(resp.data);
+            }
         });
     }, []);
 
@@ -33,6 +38,11 @@ export default function QuestionList() {
             <div className="container ">
                 <div className="row ml-2 mb-2">
                     <h1>{category}</h1>
+                </div>
+                <div className="row justify-content-center mt-5">
+                    {hideList &&
+                        <h3>There are no questions asked in this category</h3>
+                    }
                 </div>
                 <div className="row">
                     <div className="col">

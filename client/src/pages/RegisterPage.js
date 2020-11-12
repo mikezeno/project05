@@ -39,7 +39,7 @@ export default function Register() {
 
                             <div className="form-row">
                                 <div className="form-group col-lg-12">
-                                    <input type="text" placeholder="First Name" maxlength="25" onChange={(e) => {
+                                    <input type="text" placeholder="First Name" maxLength="25" onChange={(e) => {
                                         let name = e.target.value;
                                         const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
                                         setFirstNameReg(nameCapitalized);
@@ -48,7 +48,7 @@ export default function Register() {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-lg-12">
-                                    <input type="text" placeholder="Last Name" maxlength="25" onChange={(e) => {
+                                    <input type="text" placeholder="Last Name" maxLength="25" onChange={(e) => {
                                         let name = e.target.value;
                                         const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
                                         setLastNameReg(nameCapitalized);
@@ -57,14 +57,14 @@ export default function Register() {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-lg-12">
-                                    <input type="text" placeholder="Username" maxlength="25" onChange={(e) => {
+                                    <input type="text" placeholder="Username" maxLength="25" onChange={(e) => {
                                         setUserNameReg(e.target.value);
                                     }} />
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-lg-12">
-                                    <input type="password" placeholder="Password" maxlength="25" onChange={(e) => {
+                                    <input type="password" placeholder="Password" maxLength="25" onChange={(e) => {
                                         setPasswordReg(e.target.value);
                                     }} />
                                 </div>

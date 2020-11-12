@@ -90,7 +90,7 @@ export default function AskQuestion() {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="questiontitle">Title</label>
-                                <input type="text" className="form-control" id="questiontitle" maxlength="300"
+                                <input type="text" className="form-control" id="questiontitle" maxLength="300"
                                     placeholder="Summarize your question..."
                                     ref={titleRef} onChange={(e) => {
                                         setTitle(e.target.value);

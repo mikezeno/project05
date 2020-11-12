@@ -10,7 +10,9 @@ const getAnswers = async (req, resp) => {
     try {
         const questionid = req.params.id
         console.log('Attemping to fetch answers...')
-        const sqlSelect = 'SELECT * FROM answers WHERE questionid = ?';
+        const sqlSelect = 'SELECT a.id AS id, a.body AS body, a.createdate AS createdate, DATE_FORMAT(a.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'a.questionid AS questionid, u.id AS userid, u.username AS username FROM answers a LEFT JOIN users u ON u.id = a.userid ' + 
+            'WHERE questionid = ? ORDER BY a.createdate ASC';
         dbconn.query(sqlSelect, questionid, (err, result) => {
             if (err) {
                 console.log('Database error in getAnswers: ' + err);
@@ -74,7 +76,7 @@ const addAnswer = async (req, resp) => {
                 resp.status(404).send('Database error occurred while trying to add answer. Please try again.')
             }
             console.log('Answer created: ' + result);
-            resp.status(201).send(result)  //resp.send('Answer created:', result); //express deprecated res.send(status, body): Use resp.status('Answer created').send(result)
+            resp.status(201).send(result)
         });
     }
     catch (err) {
@@ -135,7 +137,7 @@ const updateAnswer = async (req, resp) => {
     }
     catch (err) {
         console.log('Exception error caught in updateAnswer: ' + err);
-        resp.status(500).send(`An error occured while trying to update answer id:${id}: `+ err)
+        resp.status(500).send(`An error occured while trying to update answer id:${id}: ` + err)
     }
     finally {
         if (dbconn) {

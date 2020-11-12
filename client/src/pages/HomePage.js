@@ -21,9 +21,7 @@ export default function HomePage() {
     }, []);
 
     useEffect(() => {
-        console.log('New vote! Refreshing page...')
         Axios.get('/question/get/').then((resp) => {
-            setCategory(resp.data[0].category);
             setQuestionList(resp.data);
         });
     }, [voteState])
@@ -48,9 +46,9 @@ export default function HomePage() {
                     <div className="col">
                         {questionList.map((val, key) => {
                             return (
-                                <div className="row">
+                                <div className="row" key={key}>
                                     <div className="col">
-                                        <div className="card" key={val.id} >
+                                        <div className="card">
                                             <div className="question-body card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
                                                 <div className="d-flex w-100 justify-content-between">
                                                     <h5>{val.username} <span className="mb-1 text-muted">asked </span> </h5>
@@ -59,7 +57,7 @@ export default function HomePage() {
                                                 <h3>{val.title}</h3>
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
                                                 <div className="d-flex w-100 justify-content-end">
-                                                    <small><span class="badge ">{val.category}</span></small>
+                                                    <small><span className="badge ">{val.category}</span></small>
                                                 </div>
                                             </div>
                                             <div className="card-footer">
