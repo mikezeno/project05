@@ -29,9 +29,11 @@ export default function QuestionPage() {
                     body: resp.data[0].body,
                     votes: resp.data[0].votes,
                     userid: resp.data[0].userid,
+                    username: resp.data[0].username,
                     categoryid: resp.data[0].categoryid,
                     category: resp.data[0].category,
                     createdate: resp.data[0].createdate,
+                    formatdate: resp.data[0].formatdate,
                 }
             )
         })
@@ -94,7 +96,10 @@ export default function QuestionPage() {
                     <div className="col">
                         <div className="card">
                             <div className="card-body">
-                                <h5>User{question.userid} asked on {question.createdate}</h5>
+                                <div className="d-flex w-100 justify-content-between">
+                                     <h5>{question.username} <span className="mb-1 text-muted">asked </span> </h5>
+                                     <small><span>{question.formatdate}</span></small>
+                                </div>
                                 <h3>{question.title}</h3>
                                 <p>{question.body}</p>
                             </div>

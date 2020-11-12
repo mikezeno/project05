@@ -48,7 +48,6 @@ export default function QuestionList() {
                                                 </div>
                                                 <h3>{val.title}</h3>
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
-                                        
                                             </div>
                                             <div className="card-footer">
                                                 <div className="card-button left" onClick={() => { history.push(`/app/question/${val.id}/answer`) }}>

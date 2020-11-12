@@ -9,11 +9,11 @@ const getQuestions = async (req, resp) => {
     const dbconn = await getConnection();
     try {
         console.log('Attemping to fetch questions...')
-        const sqlSelect = 
-        'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' + 
-        'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' + 
-        'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' + 
-        'ORDER BY votes DESC;';
+        const sqlSelect =
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
+            'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
+            'ORDER BY votes DESC;';
         dbconn.query(sqlSelect, (err, result) => {
             if (err) {
                 console.log('Database error in getQuestions: ' + err);
@@ -40,10 +40,10 @@ const getQuestionsByCategory = async (req, resp) => {
     try {
         const id = req.params.id
         console.log(`Attemping to fetch question by category id:${id}...`)
-        const sqlSelect = 
-            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' + 
-            'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' + 
-            'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' + 
+        const sqlSelect =
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
+            'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
             'WHERE categoryid = ? ORDER BY votes DESC;';
         dbconn.query(sqlSelect, id, (err, result) => {
             if (err) {
@@ -71,7 +71,11 @@ const findQuestion = async (req, resp) => {
     try {
         const id = req.params.id
         console.log(`Attemping to fetch question id:${id}...`)
-        const sqlSelect = 'SELECT q.*, c.category as category FROM questions q LEFT JOIN categories c ON c.id = q.categoryid WHERE q.id = ?';
+        const sqlSelect =
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
+            'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
+            'WHERE q.id = ?';
         dbconn.query(sqlSelect, id, (err, result) => {
             if (err) {
                 console.log('Database error in findQuestion: ' + err);
