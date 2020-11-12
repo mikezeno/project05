@@ -23,18 +23,20 @@ export default function Register() {
     };
 
     return (
-        <div className="page">
+        <div className="landing-content">
             <div className="container">
-                <div className="landing-content">
+                <div className="row">
+                    <div className="col">
+                <div>
                     <div className="row justify-content-center mb-5">
                         <h1>Register</h1>
                     </div>
-                    <div className="row justify-content-center mr-5 pr-3">
-
+                    <div className="row justify-content-center mr-5 pr-5">
+                        <h5 className="mr-5 pr-4">Let's create an account:</h5>
                     </div>
                     <div className="form">
                         <form>
-                            <h5>Let's create an account:</h5>
+
                             <div className="form-row">
                                 <div className="form-group col-lg-12">
                                     <input type="text" placeholder="First Name" onChange={(e) => {
@@ -76,7 +78,7 @@ export default function Register() {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <button className="btn btn-block btn-primary" type="button" onClick={register}>Login</button>
+                                    <button className="main-button btn btn-block btn-primary" type="button" onClick={register}>Login</button>
                                     <div className="statusMsg">
                                         {statusMsg}
                                     </div>
@@ -85,6 +87,9 @@ export default function Register() {
                         </form>
                     </div>
                 </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

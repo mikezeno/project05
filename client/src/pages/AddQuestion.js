@@ -79,10 +79,10 @@ export default function AddQuestion() {
                     <h1>Ask a question</h1>
                 </div>
                 <div className="row justify-content-center">
-                    <div className="col-8">
+                    <div className="col-12">
                         <form>
                             <div className="form-group">
-                                <label for="questiontitle">Title</label>
+                                <label htmlFor="questiontitle">Title</label>
                                 <input type="text" className="form-control" id="questiontitle" placeholder="Summarize your question..."
                                     ref={titleRef} onChange={(e) => {
                                         setTitle(e.target.value);
@@ -90,7 +90,7 @@ export default function AddQuestion() {
                                 <div>{validation.titleStatus}</div>
                             </div>
                             <div className="form-group">
-                                <label for="question">Question</label>
+                                <label htmlFor="question">Question</label>
                                 <textarea className="form-control" id="quesiton" rows="3" placeholder="Describe your question in detail..."
                                     ref={bodyRef} onChange={(e) => {
                                         setBody(e.target.value);
@@ -98,7 +98,7 @@ export default function AddQuestion() {
                                 <div>{validation.bodyStatus}</div>
                             </div>
                             <div className="form-group">
-                                <label for="Category">Category</label>
+                                <label htmlFor="Category">Category</label>
                                 <select className="form-control" id="Category">
                                     <option>Arts & Entertainment</option>
                                     <option>Computers & Electronics</option>
@@ -113,7 +113,7 @@ export default function AddQuestion() {
                             </div>
 
                             <div className="form-group">
-                                <label for="user">User</label>
+                                <label htmlFor="user">User</label>
                                 <input type="number" className="form-control" id="user" placeholder="UserId"
                                     ref={userRef} onChange={(e) => {
                                         setUserid(e.target.value);
@@ -121,7 +121,7 @@ export default function AddQuestion() {
                                 <div>{validation.userStatus}</div>
                             </div>
                             <div className="form-group">
-                                <button type="button" class="main-button btn btn-primary btn-lg btn-block" onClick={submitQuestion}>Submit</button>
+                                <button type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={submitQuestion}>Submit</button>
                             </div>
                         </form>
                     </div>

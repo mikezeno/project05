@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './style/App.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Axios from 'axios'
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Public from './pages/Public';
-import AddAnswer from './pages/AddAnswer';
+import LoginPage from './pages/LoginPage';
+import Register from './pages/RegisterPage';
+import FrontPage from './pages/FrontPage';
 import AddQuestion from './pages/AddQuestion';
-import Question from './pages/Question';
+import QuestionEdit from './pages/QuestionEdit';
 import QuestionList from './pages/QuestionList';
 import TestLogin from './pages/TestLogin';
-import NavMenu from './pages/NavMenu';
-import Header from './pages/Header';
-import Explore from './pages/Explore';
+import NavMenu from './components/NavMenu';
+import Header from './components/Header';
+import Explore from './pages/ExplorePage';
+import QuestionPage from './pages/QuestionPage';
 // import { createStore } from 'redux';
 // import { Provider } from 'react-redux'
 // import { reducer } from './redux/reducers';
@@ -51,11 +51,11 @@ function App() {
         </aside>
         <main>
           <Switch>
-            <Route path="/app/answer/:questionid" component={AddAnswer} />
+            <Route path="/app/question/edit/:id" component={QuestionEdit} />
             <Route path="/app/question/add" component={AddQuestion} />
-            <Route path="/app/question/:id" component={Question} />
-            <Route path="/app/ask" component={AddQuestion} />
-            <Route path="/app/testlogin" component={TestLogin} />
+            <Route path="/app/question/answer/:id" component={QuestionPage} />
+            <Route path="/app/question/:id" component={QuestionPage} />
+            
             <Route path="/app/questions" component={QuestionList} />
             <Route path="/app/explore" component={Explore} />
             <Redirect to={`${match.url}`} />
@@ -74,10 +74,11 @@ function App() {
     <div className="user-sub-layout">
       <div className="primary-content">
         <Switch>
-          <Route path="/auth/login" component={Login} />
+          <Route path="/auth/front" component={FrontPage} />
+          <Route path="/auth/login" component={LoginPage} />
+          <Route path="/auth/testlogin" component={TestLogin} />
           <Route path="/auth/register" component={Register} />
-          <Route path="/auth/public" component={Public} />
-          <Redirect to="/auth/login" />
+          <Redirect to="/auth/front" />
         </Switch>
       </div>
     </div>

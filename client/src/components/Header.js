@@ -13,7 +13,7 @@ export default function Header() {
     return (
         // site header
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <Link className="navbar-brand" onClick={ ()=> history.push('/') }>
+            <Link className="navbar-brand" to="/" onClick={ ()=> history.push('/') }>
                 <img src={sitelogo} width="75" height="50" className="d-inline-block align-top" alt="Site logo" loading="lazy"></img>
                 <span className="mb-0 h1">AskHow</span>
             </Link>
@@ -21,12 +21,12 @@ export default function Header() {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarToggler">
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav ml-auto pr-2">
                     <li className="nav-item">
                         <div id="hello-user" className="nav-link disabled">Hello, <span id="user">User</span></div>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" activeClassName="active" onClick={ ()=> history.push('/auth/public') }>Logout <ExitToAppIcon/></Link>
+                        <Link className="nav-link" activeclassname="active" to="'/auth/front'" onClick={ ()=> history.push('/auth/front') }>Logout <ExitToAppIcon/></Link>
                     </li>
                 </ul>
             </div>

@@ -20,8 +20,8 @@ export default function Explore() {
                 <div className="row">
                     <div className="col-12">
                         <div className="jumbotron category-box">
-                            <h1 class="display-4">Categories</h1>
-                            <hr class="my-4"></hr>
+                            <h1 className="display-4">Categories</h1>
+                            <hr className="my-4"></hr>
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">

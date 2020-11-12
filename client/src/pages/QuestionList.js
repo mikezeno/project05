@@ -36,13 +36,13 @@ export default function QuestionList() {
                                 <div className="row">
                                     <div className="col">
                                         <div className="card" key={val.id} >
-                                            <div className="card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
+                                            <div className="question-body card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
                                                 <h5>{val.username} asked on {val.formatdate}</h5>
                                                 <h3>{val.title}</h3>
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
                                             </div>
                                             <div className="card-footer">
-                                                <div className="card-button left">
+                                                <div className="card-button left" onClick={() => { history.push(`/app/question/answer/${val.id}`) }}>
                                                     <span> <QuestionAnswerIcon/> Answer</span>
                                                 </div>
                                                 <div className="card-button right" onClick={() => { voteQuestion(val.id) }}>
