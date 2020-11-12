@@ -25,46 +25,46 @@ export const NavData = [
     {
         title: "Arts & Entertainment", 
         icon: <MovieCreationIcon />,
-        link: "/app/questions/arts"
+        link: "/app/questions/1"
     },
     {
         title: "Computers & Electronics", 
         icon: <ComputerIcon />,
-        link: "/app/questions/comp"
+        link: "/app/questions/2"
     },
     {
         title: "Finance & Business", 
         icon: <MonetizationOnIcon />,
-        link: "/app/questions/finance"
+        link: "/app/questions/3"
     },
     {
         title: "Food & Cooking", 
         icon: <FastfoodIcon />,
-        link: "/app/questions/food"
+        link: "/app/questions/4"
     },
     {
         title: "Health & Relationships", 
         icon: <FavoriteBorderIcon />,
-        link: "/app/questions/health"
+        link: "/app/questions/5"
     },
     {
         title: "Hobbies & Crafts", 
         icon: <BrushIcon />,
-        link: "/app/questions/hobbies"
+        link: "/app/questions/6"
     },
     {
         title: "Home & Garden", 
         icon: <DeckIcon />,
-        link: "/app/questions/garden"
+        link: "/app/questions/7"
     },
     {
         title: "Pets & Animals", 
         icon: <PetsIcon />,
-        link: "/app/questions/pets"
+        link: "/app/questions/8"
     },
     {
         title: "Travel & Work", 
         icon: <FlightTakeoffIcon />,
-        link: "/app/questions/travel"
+        link: "/app/questions/9"
     },
 ]

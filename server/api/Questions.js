@@ -4,7 +4,7 @@ import { getConnection } from '../data/db.js'
 // Question router
 const questionRouter = Router();
 
-// get all questions for category
+// get all questions
 const getQuestions = async (req, resp) => {
     const dbconn = await getConnection();
     try {
@@ -22,6 +22,33 @@ const getQuestions = async (req, resp) => {
     catch (err) {
         console.log('Exception error caught in getQuestions: ' + err);
         resp.status(500).send('An error occured while trying to fetch questions: ' + err)
+    }
+    finally {
+        if (dbconn) {
+            dbconn.end();
+        }
+    };
+};
+
+// get all questions by category
+const getQuestionsByCategory = async (req, resp) => {
+    const dbconn = await getConnection();
+    try {
+        const id = req.params.id
+        console.log(`Attemping to fetch question by category id:${id}...`)
+        const sqlSelect = 'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, q.categoryid AS categoryid, u.id AS userid, u.username AS username FROM questions q LEFT JOIN users u ON u.id = q.userid WHERE categoryid = ? ORDER BY createdate DESC';
+        dbconn.query(sqlSelect, id, (err, result) => {
+            if (err) {
+                console.log('Database error in getQuestions: ' + err);
+                resp.status(404).send(`Database error occurred while tyring to fetch questions by category id:${id}. Please try again.`)
+            }
+            console.log(`Questions for category id:${id} fetched`);
+            resp.status(200).send(result);
+        });
+    }
+    catch (err) {
+        console.log('Exception error caught in getQuestions: ' + err);
+        resp.status(500).send(`An error occured while trying to fetch questions for category id:${id}: ` + err)
     }
     finally {
         if (dbconn) {
@@ -174,6 +201,7 @@ const voteQuestion = async (req, resp) => {
 // question routes
 questionRouter.get('/get', getQuestions);
 questionRouter.get('/get/:id', findQuestion);
+questionRouter.get('/get/cat/:id', getQuestionsByCategory);
 questionRouter.post('/ask', addQuestion);
 questionRouter.delete('/delete/:id', deleteQuestion);
 questionRouter.put('/edit', updateQuestion);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
@@ -9,10 +9,10 @@ export default function QuestionList() {
 
     const [questionList, setQuestionList] = useState([])
     const history = useHistory();
+    const { catid } = useParams();
 
     useEffect(() => {
-        Axios.get('/question/get').then((resp) => {
-            console.log('inside questions use effect', resp.data);
+        Axios.get(`/question/get/cat/${catid}`).then((resp) => {
             setQuestionList(resp.data);
         });
     }, []);
@@ -56,11 +56,7 @@ export default function QuestionList() {
                         })}
                     </div>
                 </div>
-                {/* <div>
-                <button onClick={(e) => history.push('/question/ask')}>Ask Question</button>
-            </div> */}
             </div>
         </div>
-
     )
 }

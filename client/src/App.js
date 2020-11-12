@@ -51,12 +51,13 @@ function App() {
         </aside>
         <main>
           <Switch>
+            <Route path="/app/questions/:catid" component={QuestionList} />
             <Route path="/app/question/edit/:id" component={QuestionEdit} />
             <Route path="/app/question/add" component={AddQuestion} />
             <Route path="/app/question/answer/:id" component={QuestionPage} />
             <Route path="/app/question/:id" component={QuestionPage} />
             
-            <Route path="/app/questions" component={QuestionList} />
+            
             <Route path="/app/explore" component={Explore} />
             <Redirect to={`${match.url}`} />
             {/* <Route exact path={props.match.path} component={BrowseUsersPage} />
