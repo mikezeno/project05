@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useParams, useHistory, useLocation  } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
@@ -30,6 +30,7 @@ export default function QuestionPage() {
                     votes: resp.data[0].votes,
                     userid: resp.data[0].userid,
                     categoryid: resp.data[0].categoryid,
+                    category: resp.data[0].category,
                     createdate: resp.data[0].createdate,
                 }
             )
@@ -86,6 +87,9 @@ export default function QuestionPage() {
     return (
         <div className="page">
             <div className="container">
+                <div className="row ml-2 mb-2">
+                    <h1>{question.category} <span>&#62;</span> Question</h1>
+                </div>
                 <div className="row">
                     <div className="col">
                         <div className="card">
@@ -110,7 +114,8 @@ export default function QuestionPage() {
                         <form id="answer-form" className="collapse">
                             <div className="form-group">
                                 <label htmlFor="answer">Answer</label>
-                                <textarea className="form-control" id="answer" rows="3" placeholder="Provide a detailed answer..."
+                                <textarea className="form-control" id="answer" rows="3" maxlength="500"
+                                    placeholder="Provide a detailed answer..."
                                     ref={bodyRef} onChange={(e) => {
                                         setBody(e.target.value);
                                     }}></textarea>
@@ -134,7 +139,7 @@ export default function QuestionPage() {
                     <div className="col">
                         <div id="answer-list">
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
+                                <li className="list-group-item mb-3">
                                     <div className="d-flex w-100 justify-content-between">
                                         <h5 className="mb-1">List group item heading</h5>
                                         <small>3 days ago</small>

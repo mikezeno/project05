@@ -21,6 +21,10 @@ export default function AskQuestion() {
         titleRef.current.focus();
     }, [titleRef])
 
+    useEffect(() => {
+        console.log("category state= " + category)
+    }, [category])
+
     // post question to server
     const submitQuestion = () => {
         setValidation([])
@@ -86,7 +90,8 @@ export default function AskQuestion() {
                         <form>
                             <div className="form-group">
                                 <label htmlFor="questiontitle">Title</label>
-                                <input type="text" className="form-control" id="questiontitle" placeholder="Summarize your question..."
+                                <input type="text" className="form-control" id="questiontitle" maxlength="300"
+                                    placeholder="Summarize your question..."
                                     ref={titleRef} onChange={(e) => {
                                         setTitle(e.target.value);
                                     }} />

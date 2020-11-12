@@ -13,6 +13,7 @@ import Header from './components/Header';
 import ExplorePage from './pages/ExplorePage';
 import QuestionPage from './pages/QuestionPage';
 import AskQuestion from './pages/AskQuestion';
+import HomePage from './pages/HomePage';
 // import { createStore } from 'redux';
 // import { Provider } from 'react-redux'
 // import { reducer } from './redux/reducers';
@@ -51,14 +52,14 @@ function App() {
         </aside>
         <main>
           <Switch>
-          {/* <Route path="/app/home" component={Home} /> */}
+             <Route path="/app/home" exact component={HomePage} />
             <Route path="/app/explore" component={ExplorePage} />
             <Route path="/app/category/:catid" component={QuestionList} />
             <Route path="/app/question/:id/answer" component={QuestionPage} />
             <Route path="/app/question/:id" component={QuestionPage} />
             <Route path="/app/edit/:id" component={QuestionEdit} />
             <Route path="/app/ask" component={AskQuestion} />
-            <Redirect to={`/app`} />
+            <Redirect to={`/app/home`} />
             {/* <Route exact path={props.match.path} component={BrowseUsersPage} />
             <Route path={`${match.path}/add`} component={AddUserPage} />
             <Route path={`${match.path}/:userId/edit`} component={EditUserPage} />

@@ -39,14 +39,14 @@ export default function Login() {
                     <form>
                         <div className="form-row">
                             <div className="form-group col-lg-12">
-                                <input type="text" placeholder="Username..." onChange={(e) => {
+                                <input type="text" placeholder="Username..." maxlength="25" onChange={(e) => {
                                     setUserName(e.target.value);
                                 }} />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <input type="password" placeholder="Password..." onChange={(e) => {
+                                <input type="password" placeholder="Password..." maxlength="25" onChange={(e) => {
                                     setPassword(e.target.value);
                                 }} />
                             </div>
@@ -61,7 +61,6 @@ export default function Login() {
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     )

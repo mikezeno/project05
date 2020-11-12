@@ -5,19 +5,28 @@ import { useHistory, useParams } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-export default function QuestionList() {
+export default function HomePage() {
 
     const [questionList, setQuestionList] = useState([])
     const [category, setCategory] = useState('')
     const history = useHistory();
     const { catid } = useParams();
+    const [voteState, setVoteState] = useState([])
 
     useEffect(() => {
-        Axios.get(`/question/get/cat/${catid}`).then((resp) => {
+        Axios.get('/question/get/').then((resp) => {
             setCategory(resp.data[0].category);
             setQuestionList(resp.data);
         });
     }, []);
+
+    useEffect(() => {
+        console.log('New vote! Refreshing page...')
+        Axios.get('/question/get/').then((resp) => {
+            setCategory(resp.data[0].category);
+            setQuestionList(resp.data);
+        });
+    }, [voteState])
 
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
@@ -25,6 +34,7 @@ export default function QuestionList() {
         let question = prevList.find(ques => ques.id === id)
         if (question)
             question.votes++;
+        setVoteState([...prevList])
         setQuestionList([...prevList])
     };
 
@@ -32,7 +42,7 @@ export default function QuestionList() {
         <div className="page">
             <div className="container ">
                 <div className="row ml-2 mb-2">
-                    <h1>{category}</h1>
+                    <h1>Home <span>&#62;</span> Trending</h1>
                 </div>
                 <div className="row">
                     <div className="col">
@@ -48,7 +58,9 @@ export default function QuestionList() {
                                                 </div>
                                                 <h3>{val.title}</h3>
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
-                                        
+                                                <div className="d-flex w-100 justify-content-end">
+                                                    <small><span class="badge ">{val.category}</span></small>
+                                                </div>
                                             </div>
                                             <div className="card-footer">
                                                 <div className="card-button left" onClick={() => { history.push(`/app/question/${val.id}/answer`) }}>

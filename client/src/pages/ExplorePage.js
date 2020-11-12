@@ -17,10 +17,13 @@ export default function ExplorePage() {
     return (
         <div className="page">
             <div className="container">
+            <div className="row ml-2 mb-2">
+                    <h1>Explore</h1>
+                </div>
                 <div className="row">
                     <div className="col-12">
                         <div className="jumbotron category-box">
-                            <h1 className="display-4">Categories</h1>
+                            <h1>Categories</h1>
                             <hr className="my-4"></hr>
                             <div className="row">
                                 <div className="col-4">
