@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
 import '../style/App.css'
-import { useHistory  } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { userLoggedIn } from '../redux/Actions/userActions';
+import { useDispatch } from 'react-redux'
 
 export default function Login() {
 
     let history = useHistory();
+    const dispatch = useDispatch();
 
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -14,34 +17,39 @@ export default function Login() {
     const userInput = useRef();
     const passwordInput = useRef();
 
-    useEffect( ()=> {
+    useEffect(() => {
         userInput.current.focus();
     }, [userInput])
 
     const login = () => {
         setStatus('')
-        if (username !== '' && password !== ''){
-                    Axios.post('/user/login', {
-            username: username,
-            password: password
-        }).then((resp) => {
-            console.log(resp.data);
+        if (username !== '' && password !== '') {
+            Axios.post('/user/login', {
+                username: username,
+                password: password
+            }).then((resp) => {
+                console.log(resp.data);
 
-            if (resp.data.message) {
-                setStatus(resp.data.message);
-            } else {
-                console.log(resp.data[0].username);
-                history.push('/app')
-            }
-        });
+                if (resp.data.message) {
+                    setStatus(resp.data.message);
+                } else {
+                    let user = {
+                        userid: resp.data[0].id,
+                        username: resp.data[0].username,
+                        firstname: resp.data[0].firstname,
+                        lastname: resp.data[0].lastname,
+                    }
+                    dispatch(userLoggedIn(user));
+                    console.log("Login Successful:" + resp.data[0].username);
+                    history.push('/app')
+                }
+            });
         } else {
             userInput.current.value = '';
             passwordInput.current.value = '';
             userInput.current.focus();
             setStatus("Please fill out both fields")
         }
-
-
     };
 
     return (

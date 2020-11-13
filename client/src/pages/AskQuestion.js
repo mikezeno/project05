@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
+import { useSelector } from 'react-redux'
 
 export default function AskQuestion() {
 
@@ -8,12 +9,11 @@ export default function AskQuestion() {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [category, setCategory] = useState(1);
-    const [userid, setUserid] = useState('')
     const [validation, setValidation] = useState([])
+    const userState = useSelector(state => state);
 
     // refs
     const titleRef = useRef();
-    const userRef = useRef();
     const bodyRef = useRef();
 
     // hooks
@@ -28,33 +28,29 @@ export default function AskQuestion() {
     // post question to server
     const submitQuestion = () => {
         setValidation([])
-        if (titleRef.current.value === '' || bodyRef.current.value === '' || userRef.current.value === '') {
+        if (titleRef.current.value === '' || bodyRef.current.value === '') {
             validateForm();
         }
         else {
+            console.log(userState)
+
             Axios.post('/question/add', {
                 title: title,
                 body: body,
-                userid: userid,
+                userid: userState.userId,
                 categoryid: category
             })
-
             //Add to reducer
             // setMovieList([
             //     ...movieList,
             //     { name: movie, review: review }
             //   ]);
-
-
             titleRef.current.value = '';
             bodyRef.current.value = '';
-            userRef.current.value = '';
             titleRef.current.focus();
             setTitle('');
             setBody('');
-            setUserid('');
         }
-
     }
 
     // validate form fields
@@ -64,12 +60,6 @@ export default function AskQuestion() {
             prevState.push({ bodyStatus: 'Please enter a question body.' })
             setValidation(prevState)
             bodyRef.current.focus();
-        }
-        if (userRef.current.value === '') {
-            let prevState = validation;
-            prevState.push({ userStatus: 'Please enter a userId.' })
-            setValidation(prevState)
-            userRef.current.focus();
         }
         if (titleRef.current.value === '') {
             let prevState = validation;
@@ -122,22 +112,12 @@ export default function AskQuestion() {
                                     <option value="9">Travel & Work</option>
                                 </select>
                             </div>
-
-                            <div className="form-group">
-                                <label htmlFor="user">User</label>
-                                <input type="number" className="form-control" id="user" placeholder="UserId" required
-                                    ref={userRef} onChange={(e) => {
-                                        setUserid(e.target.value);
-                                    }} />
-                                <div>{validation.userStatus}</div>
-                            </div>
                             <div className="form-group">
                                 <button type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={submitQuestion}>Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     )

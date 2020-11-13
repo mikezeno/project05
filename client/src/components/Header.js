@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/App.css';
 import { useHistory, Link } from 'react-router-dom';
 import logo from '../images/logo.png'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {userLoggedOut } from '../redux/Actions/userActions';
+import { useSelector, useDispatch } from 'react-redux'
 
 
 export default function Header() {
 
     const sitelogo = logo
     let history = useHistory();
+    const [loginStatus, setLoginStatus] = useState('');
 
     return (
         // site header

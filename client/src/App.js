@@ -21,7 +21,6 @@ function App() {
 
   Axios.defaults.withCredentials = true;
 
-  const userState = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
   const [loginStatus, setLoginStatus] = useState('');
 
@@ -29,14 +28,14 @@ function App() {
     Axios.get('/user/login').then((resp) => {
       console.log('LoggedIn: ' + resp.data.loggedIn);
       if (resp.data.loggedIn === true) {
-        SetLogin(resp.data.user[0].id)
-        setLoginStatus(resp.data.user[0].username);
+        console.log(resp.data.user[0].username + ': Session Logged')
+        setLoginStatus(resp.data.user[0].id);
       }
     });
   }, [loginStatus])
 
 
- function SetLogin (id) {
+ function SetSession (id) {
     dispatch(userLoggedIn(id));
   }
 
@@ -48,7 +47,7 @@ function App() {
         </aside>
         <main>
           <Switch>
-             <Route path="/app/home" exact component={HomePage} />
+            <Route path="/app/home" exact component={HomePage} />
             <Route path="/app/explore" component={ExplorePage} />
             <Route path="/app/category/:catid" component={QuestionList} />
             <Route path="/app/question/:id/answer" component={QuestionPage} />

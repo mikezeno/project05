@@ -5,6 +5,7 @@ import { useParams, useHistory, useLocation } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import $ from 'jquery'
+import { useSelector } from 'react-redux'
 
 export default function QuestionPage() {
 
@@ -16,13 +17,12 @@ export default function QuestionPage() {
     // states
     const [question, setQuestion] = useState({})
     const [answerList, setAnswerList] = useState([])
-    const [answerUserid, setUserid] = useState('')
     const [body, setBody] = useState('')
     const [hideQuestion, setHideQuestion] = useState(false);
     const [hideAnswers, setHideAnswers] = useState(false);
+    const userState = useSelector(state => state);
 
     // refs
-    const userRef = useRef();
     const bodyRef = useRef();
 
     // get question from server
@@ -68,23 +68,22 @@ export default function QuestionPage() {
         if (body !== '') {
             let newAnswer = {
                 body: body,
-                userid: answerUserid,
+                userid: userState.userId,
                 questionid: id
             }
             setAnswerList([...answerList, newAnswer])
             Axios.post('/answer/add',
                 {
                     body: body,
-                    userid: answerUserid,
+                    userid: userState.userId,
                     questionid: id
                 }
             );
             //Add to reducer
-            // setMovieList([
-            //     ...movieList,
-            //     { name: movie, review: review }
+            // setAnswerList([
+            //     ...answerList,
+            //      answer
             //   ]);
-            userRef.current.value = '';
             bodyRef.current.value = '';
             bodyRef.current.focus();
             $('#answerBtn').click();
@@ -141,14 +140,6 @@ export default function QuestionPage() {
                                         setBody(e.target.value);
                                     }}></textarea>
                                 {/* <div>{validation.bodyStatus}</div> */}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="user">User</label>
-                                <input type="number" className="form-control" id="user" placeholder="UserId"
-                                    ref={userRef} onChange={(e) => {
-                                        setUserid(e.target.value);
-                                    }} />
-                                {/* <div>{validation.userStatus}</div> */}
                             </div>
                             <div className="form-group">
                                 <button type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={submitAnswer}>Submit</button>

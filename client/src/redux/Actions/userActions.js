@@ -1,11 +1,11 @@
 import {USER_LOGGEDIN, USER_LOGGEDOUT } from './actionTypes'
 
 // USER_LOGGEDIN
-export const userLoggedIn = (id) => {
+export const userLoggedIn = (user) => {
     return {
         type: USER_LOGGEDIN,
         logged: true,
-        userId: id
+        user: user
     }
 }
 
@@ -15,6 +15,5 @@ export const userLoggedOut = () => {
     return {
         type: USER_LOGGEDOUT,
         logged: false,
-        userId: 0
     }
 }
