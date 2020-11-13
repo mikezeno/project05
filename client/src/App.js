@@ -14,31 +14,31 @@ import ExplorePage from './pages/ExplorePage';
 import QuestionPage from './pages/QuestionPage';
 import AskQuestion from './pages/AskQuestion';
 import HomePage from './pages/HomePage';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
-import { userReducer } from './redux/Reducers/userReducer';
-
-// redux store
-var store = createStore(
-  userReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { useSelector, useDispatch } from 'react-redux'
+import { userLoggedIn, userLoggedOut } from './redux/Actions/userActions';
 
 function App() {
 
   Axios.defaults.withCredentials = true;
 
+  const userState = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
   const [loginStatus, setLoginStatus] = useState('');
 
   useEffect(() => {
     Axios.get('/user/login').then((resp) => {
       console.log('LoggedIn: ' + resp.data.loggedIn);
       if (resp.data.loggedIn === true) {
+        SetLogin(resp.data.user[0].id)
         setLoginStatus(resp.data.user[0].username);
       }
     });
   }, [loginStatus])
 
+
+ function SetLogin (id) {
+    dispatch(userLoggedIn(id));
+  }
 
   const AppLayout = ({ match }) => {
     return (
@@ -83,7 +83,6 @@ function App() {
 
   return (
     <div className="App">
-      <Provider store={store}>
       <BrowserRouter>
         <Header />
         <Switch>
@@ -92,7 +91,6 @@ function App() {
           <Redirect to="/auth" />
         </Switch>
       </BrowserRouter>
-      </Provider>
     </div>
   );
 }
