@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Axios from 'axios'
 import '../style/App.css'
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { useHistory  } from 'react-router-dom';
 
 export default function Login() {
+
+    let history = useHistory();
 
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [statusMsg, setStatus] = useState('');
 
-    const login = () => {
-        console.log(username, password)
+    const userInput = useRef();
+    const passwordInput = useRef();
 
-        Axios.post('/user/login', {
+    useEffect( ()=> {
+        userInput.current.focus();
+    }, [userInput])
+
+    const login = () => {
+        setStatus('')
+        if (username !== '' && password !== ''){
+                    Axios.post('/user/login', {
             username: username,
             password: password
         }).then((resp) => {
@@ -21,9 +30,18 @@ export default function Login() {
             if (resp.data.message) {
                 setStatus(resp.data.message);
             } else {
-                setStatus(resp.data[0].username);
+                console.log(resp.data[0].username);
+                history.push('/app')
             }
         });
+        } else {
+            userInput.current.value = '';
+            passwordInput.current.value = '';
+            userInput.current.focus();
+            setStatus("Please fill out both fields")
+        }
+
+
     };
 
     return (
@@ -39,14 +57,14 @@ export default function Login() {
                     <form>
                         <div className="form-row">
                             <div className="form-group col-lg-12">
-                                <input type="text" placeholder="Username..." maxLength="25" onChange={(e) => {
+                                <input type="text" placeholder="Username..." maxLength="25" ref={userInput} onChange={(e) => {
                                     setUserName(e.target.value);
                                 }} />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <input type="password" placeholder="Password..." maxLength="25" onChange={(e) => {
+                                <input type="password" placeholder="Password..." maxLength="25" ref={passwordInput} onChange={(e) => {
                                     setPassword(e.target.value);
                                 }} />
                             </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -11,7 +11,6 @@ export default function QuestionEdit() {
 
     const [question, setQuestion] = useState({})
     const [newBody, setQuestionBody] = useState('')
-    const history = useHistory();
     const editQuestionRef = useRef();
 
     useEffect(() => {
@@ -87,9 +86,6 @@ export default function QuestionEdit() {
                                 </div>
                             </div>
                         </div>
-                        {/* <button type="button" onClick={() => { deleteQuestion(id) }}>Delete</button>
-                        <input type="text" id="updateInput" ref={editQuestionRef} onChange={(e) => { setQuestionBody(e.target.value) }} />
-                        <button type="button" onClick={() => { editQuestion(id) }}>Submit</button> */}
                     </div>
                 </div>
             </div>

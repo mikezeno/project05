@@ -22,7 +22,6 @@ export default function QuestionPage() {
     const [hideAnswers, setHideAnswers] = useState(false);
 
     // refs
-    const quesitonRef = useRef();
     const userRef = useRef();
     const bodyRef = useRef();
 

@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 export default function HomePage() {
 
     const [questionList, setQuestionList] = useState([])
-    const [category, setCategory] = useState('')
     const history = useHistory();
-    const { catid } = useParams();
     const [voteState, setVoteState] = useState([])
 
     useEffect(() => {
         Axios.get('/question/get/').then((resp) => {
-            setCategory(resp.data[0].category);
             setQuestionList(resp.data);
         });
     }, []);

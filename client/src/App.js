@@ -14,19 +14,15 @@ import ExplorePage from './pages/ExplorePage';
 import QuestionPage from './pages/QuestionPage';
 import AskQuestion from './pages/AskQuestion';
 import HomePage from './pages/HomePage';
-// import { createStore } from 'redux';
-// import { Provider } from 'react-redux'
-// import { reducer } from './redux/reducers';
-
-// Layouts
-// import UnauthorizedLayout from './layouts/PublicLayout'
-// import PrimaryLayout from './layouts/UserLayout'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import { userReducer } from './redux/Reducers/userReducer';
 
 // redux store
-// var store = createStore(
-//   reducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
+var store = createStore(
+  userReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 function App() {
 
@@ -60,7 +56,7 @@ function App() {
             <Route path="/app/edit/:id" component={QuestionEdit} />
             <Route path="/app/ask" component={AskQuestion} />
             <Redirect to={`/app/home`} />
-            {/* <Route exact path={props.match.path} component={BrowseUsersPage} />
+            {/* <Route exact path={props.match.path} component={HomePage} />
             <Route path={`${match.path}/add`} component={AddUserPage} />
             <Route path={`${match.path}/:userId/edit`} component={EditUserPage} />
             <Route path={`${match.path}/:userId`} component={UserProfilePage} />
@@ -85,41 +81,18 @@ function App() {
     </div>
   )
 
-  // const OldRoutes = () => (
-  //   <div className="primary-layout">
-  //     <header>
-  //       <Header />
-  //       <Route path="/users" component={NavMenu} />
-  //     </header>
-  //     <main>
-  //       <Switch>
-  //         <Route path="/" exact component={Home} />
-  //         <Route path="/answer/question/:id" render={(props) => <Answer />} />
-  //         <Route path="/question/:id" render={(props) => <Question />} />
-  //         <Route path="/ask" component={AskQuestion} />
-  //         <Route path="/login" component={Login} />
-  //         <Route path="/register" component={Register} />
-  //         <Route path="/test" component={Test} />
-  //         <Route path="/questions" component={Questions} />
-  //         <Redirect to='/' />
-  //       </Switch>
-  //     </main>
-  //   </div>
-  // )
-
   return (
     <div className="App">
-      {/* <Provider store={store}> */}
+      <Provider store={store}>
       <BrowserRouter>
         <Header />
         <Switch>
           <Route path="/auth" component={AuthLayout} />
           <Route path="/app" component={AppLayout} />
-          {/* <AuthorizedRoute path="/app" component={PrimaryLayout} /> */}
           <Redirect to="/auth" />
         </Switch>
       </BrowserRouter>
-      {/* </Provider> */}
+      </Provider>
     </div>
   );
 }
