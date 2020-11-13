@@ -216,7 +216,7 @@ questionRouter.get('/get/:id', findQuestion);
 questionRouter.get('/get/cat/:id', getQuestionsByCategory);
 questionRouter.post('/add', addQuestion);
 questionRouter.delete('/delete/:id', deleteQuestion);
-questionRouter.put('/edit', updateQuestion);
+questionRouter.post('/edit', updateQuestion);
 questionRouter.put('/vote/:id', voteQuestion);
 
 export default questionRouter;

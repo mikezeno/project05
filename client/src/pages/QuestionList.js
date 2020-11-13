@@ -54,7 +54,7 @@ export default function QuestionList() {
                                 <div className="row" key={val.id}>
                                     <div className="col">
                                         <div className="card"  >
-                                            <div className="question-body card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
+                                            <div className="question-body card-body" onClick={(e) => { history.push(`/app/question/${val.id}`) }}>
                                                 <div className="d-flex w-100 justify-content-between">
                                                     <h5>{val.username} <span className="mb-1 text-muted">asked </span> </h5>
                                                     <small><span>{val.formatdate}</span></small>
@@ -63,10 +63,10 @@ export default function QuestionList() {
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
                                             </div>
                                             <div className="card-footer">
-                                                <div className="card-button left" onClick={() => { history.push(`/app/question/${val.id}/answer`) }}>
+                                                <div className="card-button left" onClick={(e) => { history.push(`/app/question/${val.id}/answer`) }}>
                                                     <span> <QuestionAnswerIcon /> Answer</span>
                                                 </div>
-                                                <div className="card-button right" onClick={() => { voteQuestion(val.id) }}>
+                                                <div className="card-button right" onClick={(e) => { voteQuestion(val.id) }}>
                                                     <span ><ThumbUpIcon /> {val.votes}</span>
                                                 </div>
                                             </div>

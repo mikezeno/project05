@@ -21,6 +21,7 @@ export default function QuestionPage() {
     const [hideQuestion, setHideQuestion] = useState(false);
     const [hideAnswers, setHideAnswers] = useState(false);
     const userState = useSelector(state => state);
+    const [voteState, setVoteSate] = useState(false);
 
     // data
     const date  = new Date()
@@ -72,7 +73,7 @@ export default function QuestionPage() {
             $('#answerBtn').click();
         };
 
-    }, []);
+    }, [voteState]);
 
     // hooks
     useEffect(() => {
@@ -118,6 +119,7 @@ export default function QuestionPage() {
         console.log('question votes = ' + prevQuestion.votes)
         prevQuestion.votes++;
         setQuestion(prevQuestion)
+        setVoteSate(!voteState)
     };
 
     return (
@@ -132,7 +134,7 @@ export default function QuestionPage() {
                 <div className="row">
                     <div className="col">
                         <div className="card">
-                            <div className="card-body">
+                            <div className="question-body card-body" onClick={(e) => { history.push(`/app/edit/${question.id}`) }}>
                                 <div className="d-flex w-100 justify-content-between">
                                     <h5>{question.username} <span className="mb-1 text-muted">asked </span> </h5>
                                     <small><span>{question.formatdate}</span></small>
@@ -144,7 +146,7 @@ export default function QuestionPage() {
                                 <div className="card-button left" id="answerBtn" data-toggle="collapse" data-target="#answer-form" aria-expanded="false" aria-controls="collapseExample">
                                     <span> <QuestionAnswerIcon /> Answer</span>
                                 </div>
-                                <div className="card-button right" onClick={() => { voteQuestion(question.id) }}>
+                                <div className="card-button right" onClick={(e) => { voteQuestion(question.id) }}>
                                     <span ><ThumbUpIcon /> {question.votes}</span>
                                 </div>
                             </div>

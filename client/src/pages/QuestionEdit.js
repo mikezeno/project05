@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import $ from 'jquery'
 
 export default function QuestionEdit() {
 
     let { id } = useParams()
+    const history = useHistory();
 
     const [question, setQuestion] = useState({})
     const [newBody, setQuestionBody] = useState('')
-    const editQuestionRef = useRef();
+    const bodyRef = useRef();
 
     useEffect(() => {
         Axios.get(`/question/get/${id}`).then((resp) => {
@@ -26,45 +28,46 @@ export default function QuestionEdit() {
                     createdate: resp.data[0].createdate,
                 }
             )
+            bodyRef.current.value = resp.data[0].body;
         })
+        
     }, []);
+
+    // hooks
+    useEffect(() => {
+        bodyRef.current.focus();
+    }, [bodyRef])
 
     const deleteQuestion = (id) => {
         // Prompt "Are you sure you want to delete this question"
         Axios.delete(`/question/delete/${id}`);
-
-        // Add to reducer: 
-        //let question = movieList.filter(movie => movie.id !== id);
-        //setMovieList(movies)
+        history.push(`/app/category/${question.categoryid}`)
 
         // Redirect to Questions component
     };
 
-    const editQuestion = (id) => {
-        Axios.put('/question/edit', {
+    const submitEdit = (id) => {
+        Axios.post('/question/edit', 
+        {
             id: id,
             body: newBody
         });
-
-        // Add to reducer
-        // const newState = questionList.map(question => question.id === id
-        //     ? { ...question, body: newBody } : question
-        // );
-        //setMovieList(newState);
-
         setQuestion(
             {
                 title: question.title,
                 body: newBody,
-                votes: question.votes,
-                userid: question.userid,
-                categoryid: question.categoryid,
-                createdate: question.createdate,
             }
         )
-        editQuestionRef.current.value = ''
-        setQuestionBody('');
+        $('#editBtn').click();
     };
+
+    // handle enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitEdit();
+        }
+    }
+
 
     return (
         <div className="page">
@@ -78,14 +81,32 @@ export default function QuestionEdit() {
                                 <p>{question.body}</p>
                             </div>
                             <div className="card-footer">
-                                <div className="card-button left" onClick={() => { editQuestion(id) }}>
-                                    <span> <EditIcon/> Edit</span>
+                                <div className="card-button left" id="editBtn" data-toggle="collapse" data-target="#edit-form" aria-expanded="false">
+                                    <span> <EditIcon /> Edit</span>
                                 </div>
                                 <div className="card-button right" onClick={() => { deleteQuestion(id) }}>
-                                    <span> <DeleteIcon/> Delete</span>
+                                    <span> <DeleteIcon /> Delete</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-12">
+                        <form id="edit-form" className="collapse">
+                            <div className="form-group">
+                                <label htmlFor="edit-body">Edit Question</label>
+                                <textarea className="form-control" id="edit-body" rows="3" maxLength="2000"
+                                    onKeyDown={handleKeyDown}
+                                    ref={bodyRef} onChange={(e) => {
+                                        setQuestionBody(e.target.value);
+                                    }} required></textarea>
+                                {/* <div>{validation.bodyStatus}</div> */}
+                            </div>
+                            <div className="form-group">
+                                <button type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={submitEdit}>Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
