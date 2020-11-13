@@ -19,11 +19,11 @@ export default function NavMenu() {
                         )
                     })
                 }
-                <Link id="askButton-li" className="navrow">
+                <li id="askButton-li" className="navrow">
                     <button id="askButton" type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={() => {
                         history.push('/app/ask')
                     }}>Ask</button>
-                </Link>
+                </li>
             </ul>
         </div>
     );

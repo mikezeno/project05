@@ -62,6 +62,7 @@ nav li {
 
 .nav-link {
   color: white;
+  cursor: pointer;
 }
 
 .buttonDisabled {

@@ -28,51 +28,51 @@ export default function ExplorePage() {
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/1')}> <MovieCreationIcon /> Arts & Entertainment</Link>
+                                        <div className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/1')}> <MovieCreationIcon /> Arts & Entertainment</div>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/2')}><ComputerIcon /> Computers & Electronics </Link>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/2')}><ComputerIcon /> Computers & Electronics </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/3')}><MonetizationOnIcon /> Finance & Business </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/4')}><FastfoodIcon /> Food & Cooking </Link>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/5')}><FavoriteBorderIcon /> Health & Relationships </Link>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/6')}><BrushIcon /> Hobbies & Crafts </Link>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/3')}><MonetizationOnIcon /> Finance & Business </li>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/7')}><DeckIcon /> Home & Garden </Link>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/4')}><FastfoodIcon /> Food & Cooking </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/8')}><PetsIcon /> Pets & Animals </Link>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/5')}><FavoriteBorderIcon /> Health & Relationships </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <Link className="nav-link" activeClassName="active" onClick={() => history.push('/app/category/9')}><FlightTakeoffIcon /> Travel & Work </Link>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/6')}><BrushIcon /> Hobbies & Crafts </li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/7')}><DeckIcon /> Home & Garden </li>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/8')}><PetsIcon /> Pets & Animals </li>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/9')}><FlightTakeoffIcon /> Travel & Work </li>
                                     </div>
                                 </div>
                             </div>

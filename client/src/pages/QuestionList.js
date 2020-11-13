@@ -12,6 +12,7 @@ export default function QuestionList() {
     const history = useHistory();
     const { catid } = useParams();
     const [hideList, setHideList] = useState(false);
+    const [voteState, setVoteSate] = useState(false);
 
     useEffect(() => {
         Axios.get(`/question/get/cat/${catid}`).then((resp) => {
@@ -22,15 +23,17 @@ export default function QuestionList() {
                 setQuestionList(resp.data);
             }
         });
-    }, []);
+    }, [voteState]);
 
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
         let prevList = questionList
         let question = prevList.find(ques => ques.id === id)
-        if (question)
+        if (question) {
             question.votes++;
-        setQuestionList([...prevList])
+        }
+        //setQuestionList([...prevList])
+        setVoteSate(!voteState)
     };
 
     return (
@@ -48,9 +51,9 @@ export default function QuestionList() {
                     <div className="col">
                         {questionList.map((val, key) => {
                             return (
-                                <div className="row">
+                                <div className="row" key={val.id}>
                                     <div className="col">
-                                        <div className="card" key={val.id} >
+                                        <div className="card"  >
                                             <div className="question-body card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
                                                 <div className="d-flex w-100 justify-content-between">
                                                     <h5>{val.username} <span className="mb-1 text-muted">asked </span> </h5>

@@ -22,6 +22,9 @@ export default function QuestionPage() {
     const [hideAnswers, setHideAnswers] = useState(false);
     const userState = useSelector(state => state);
 
+    // data
+    const date  = new Date()
+
     // refs
     const bodyRef = useRef();
 
@@ -47,32 +50,47 @@ export default function QuestionPage() {
                 )
             }
         });
-        console.log(location.pathname); //check path being passed in
+        console.log('Route location: ' + location.pathname); //check path being passed in
 
         Axios.get(`/answer/get/${id}`).then((resp) => {
             if (resp.data.length === 0) {
                 setHideAnswers(true);
             } else {
-                setAnswerList(resp.data)
+                setHideAnswers(false);
+                var answers = resp.data.map(answer => (
+                    {
+                        body: answer.body, 
+                        username: answer.username, 
+                        formatdate: answer.formatdate
+                    }))
+                setAnswerList(answers)
             }
         });
+
+        let path = location.pathname.slice(-6);
+        if (path === 'answer') {
+            $('#answerBtn').click();
+        };
+
     }, []);
 
     // hooks
     useEffect(() => {
         bodyRef.current.focus();
     }, [bodyRef])
-
+    
     // add new answer
     const submitAnswer = () => {
         if (body !== '') {
+            
+            console.log(date)
             let newAnswer = {
                 body: body,
                 username: userState.username,
-                userid: userState.userId,
-                questionid: id
+                formatdate: date.toDateString()
             }
             setAnswerList([...answerList, newAnswer])
+            setHideAnswers(false);
             Axios.post('/answer/add',
                 {
                     body: body,
@@ -80,11 +98,6 @@ export default function QuestionPage() {
                     questionid: id
                 }
             );
-            //Add to reducer
-            // setAnswerList([
-            //     ...answerList,
-            //      answer
-            //   ]);
             bodyRef.current.value = '';
             bodyRef.current.focus();
             $('#answerBtn').click();
@@ -102,6 +115,7 @@ export default function QuestionPage() {
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
         let prevQuestion = question
+        console.log('question votes = ' + prevQuestion.votes)
         prevQuestion.votes++;
         setQuestion(prevQuestion)
     };
@@ -168,7 +182,7 @@ export default function QuestionPage() {
                                     </li> :
                                     answerList.map((val, key) => {
                                         return (
-                                            <li className="list-group-item mb-3">
+                                            <li className="list-group-item mb-3" key={key}>
                                                 <div className="d-flex w-100 justify-content-between">
                                                     <h5 className="mb-1">{val.username} <span className="mb-1 text-muted">answered</span></h5>
                                                     <small>{val.formatdate}</small>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 export default function AskQuestion() {
+
+    let history = useHistory();
 
     // states
     const [title, setTitle] = useState('')
@@ -39,6 +42,10 @@ export default function AskQuestion() {
                 body: body,
                 userid: userState.userId,
                 categoryid: category
+            }).then((resp) => {
+                const questionid = resp.data.insertId
+                history.push(`/app/question/${questionid}`)
+
             })
             //Add to reducer
             // setMovieList([

@@ -10,7 +10,7 @@ const getQuestions = async (req, resp) => {
     try {
         console.log('Attemping to fetch questions...')
         const sqlSelect =
-            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e %Y") AS formatdate, ' +
             'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
             'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
             'ORDER BY votes DESC;';
@@ -41,7 +41,7 @@ const getQuestionsByCategory = async (req, resp) => {
         const id = req.params.id
         console.log(`Attemping to fetch question by category id:${id}...`)
         const sqlSelect =
-            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e %Y") AS formatdate, ' +
             'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
             'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
             'WHERE categoryid = ? ORDER BY votes DESC;';
@@ -72,7 +72,7 @@ const findQuestion = async (req, resp) => {
         const id = req.params.id
         console.log(`Attemping to fetch question id:${id}...`)
         const sqlSelect =
-            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e, %Y") AS formatdate, ' +
+            'SELECT q.id AS id, q.title AS title, q.body AS body, q.votes AS votes, q.createdate AS createdate, DATE_FORMAT(q.createdate, "%a %b %e %Y") AS formatdate, ' +
             'q.categoryid AS categoryid, c.category as category, u.id AS userid, u.username AS username ' +
             'FROM questions q LEFT JOIN users u ON u.id = q.userid LEFT JOIN categories c ON c.id = q.categoryid ' +
             'WHERE q.id = ?';
@@ -113,7 +113,7 @@ const addQuestion = async (req, resp) => {
                 resp.status(404).send('Database error occurred while trying to add question. Please try again.')
             }
             console.log('Question created: ' + result);
-            resp.status(201).send('Question created: ' + result);
+            resp.status(201).send(result);
         });
     }
     catch (err) {

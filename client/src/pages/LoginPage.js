@@ -33,8 +33,9 @@ export default function Login() {
                 if (resp.data.message) {
                     setStatus(resp.data.message);
                 } else {
+                    console.log("user id = " + resp.data[0].id)
                     let user = {
-                        userid: resp.data[0].id,
+                        userId: resp.data[0].id,
                         username: resp.data[0].username,
                         firstname: resp.data[0].firstname,
                         lastname: resp.data[0].lastname,
