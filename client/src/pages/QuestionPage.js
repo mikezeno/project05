@@ -90,6 +90,13 @@ export default function QuestionPage() {
         };
     };
 
+    // handle enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitAnswer();
+        }
+    }
+
 
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
@@ -136,9 +143,10 @@ export default function QuestionPage() {
                                 <label htmlFor="answer">Answer</label>
                                 <textarea className="form-control" id="answer" rows="3" maxLength="500"
                                     placeholder="Provide a detailed answer..."
+                                    onKeyDown={handleKeyDown}
                                     ref={bodyRef} onChange={(e) => {
                                         setBody(e.target.value);
-                                    }}></textarea>
+                                    }} required></textarea>
                                 {/* <div>{validation.bodyStatus}</div> */}
                             </div>
                             <div className="form-group">

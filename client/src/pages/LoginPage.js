@@ -52,6 +52,13 @@ export default function Login() {
         }
     };
 
+    // handle enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            login();
+        }
+    }
+
     return (
         <div className="landing-content">
             <div className="container">
@@ -67,14 +74,14 @@ export default function Login() {
                             <div className="form-group col-lg-12">
                                 <input type="text" placeholder="Username..." maxLength="25" ref={userInput} onChange={(e) => {
                                     setUserName(e.target.value);
-                                }} />
+                                }} required/>
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-                                <input type="password" placeholder="Password..." maxLength="25" ref={passwordInput} onChange={(e) => {
+                                <input type="password" placeholder="Password..." maxLength="25" ref={passwordInput} onKeyDown={handleKeyDown} onChange={(e) => {
                                     setPassword(e.target.value);
-                                }} />
+                                }} required/>
                             </div>
                         </div>
                         <div className="form-row">

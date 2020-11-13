@@ -47,19 +47,23 @@ function App() {
         </aside>
         <main>
           <Switch>
-            <Route path="/app/home" exact component={HomePage} />
+            {/* <Route path="/app/home" exact component={HomePage} />
             <Route path="/app/explore" component={ExplorePage} />
             <Route path="/app/category/:catid" component={QuestionList} />
             <Route path="/app/question/:id/answer" component={QuestionPage} />
             <Route path="/app/question/:id" component={QuestionPage} />
             <Route path="/app/edit/:id" component={QuestionEdit} />
-            <Route path="/app/ask" component={AskQuestion} />
-            <Redirect to={`/app/home`} />
-            {/* <Route exact path={props.match.path} component={HomePage} />
-            <Route path={`${match.path}/add`} component={AddUserPage} />
-            <Route path={`${match.path}/:userId/edit`} component={EditUserPage} />
-            <Route path={`${match.path}/:userId`} component={UserProfilePage} />
-            <Redirect to={`${match.url}`} /> */}
+            <Route path="/app/ask" component={AskQuestion} /> */}
+          
+            <Route exact path={match.path} exact component={HomePage} />
+            <Route path={`${match.path}/explore`} exact component={ExplorePage} />
+            <Route path={`${match.path}/ask`} exact component={AskQuestion} />
+            <Route path={`${match.path}/category/:catid`} component={QuestionList} />
+            <Route path={`${match.path}/question/:id/answer`} component={QuestionPage} />
+            <Route path={`${match.path}/question/:id`} component={QuestionPage} />
+            <Route path={`${match.path}/edit/:id`} component={QuestionEdit} />
+            <Redirect to={`${match.url}`} /> 
+       
           </Switch>
         </main>
       </div>

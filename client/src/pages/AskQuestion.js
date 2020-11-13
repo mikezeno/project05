@@ -53,6 +53,13 @@ export default function AskQuestion() {
         }
     }
 
+    // handle enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitQuestion();
+        }
+    }
+
     // validate form fields
     const validateForm = () => {
         if (bodyRef.current.value === '') {
@@ -89,8 +96,9 @@ export default function AskQuestion() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="question">Question</label>
-                                <textarea className="form-control" id="quesiton" rows="3" 
-                                placeholder="Describe your question in detail..." required
+                                <textarea className="form-control" id="quesiton" rows="3"
+                                    placeholder="Describe your question in detail..." required
+                                    onKeyDown={handleKeyDown}
                                     ref={bodyRef} onChange={(e) => {
                                         setBody(e.target.value);
                                     }}></textarea>
@@ -98,7 +106,7 @@ export default function AskQuestion() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Category">Category</label>
-                                <select className="form-control" id="Category" value={category} onChange={ (e) => {
+                                <select className="form-control" id="Category" value={category} onChange={(e) => {
                                     setCategory(e.target.value);
                                 }}>
                                     <option value="1">Arts & Entertainment</option>

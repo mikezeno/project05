@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../style/App.css'
 import Axios from 'axios'
-import { useHistory, useParams, withRouter } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-function QuestionList() {
+export default function QuestionList() {
 
     const [questionList, setQuestionList] = useState([])
     const [category, setCategory] = useState('')
@@ -78,6 +78,3 @@ function QuestionList() {
         </div>
     )
 }
-
-
-export default withRouter(QuestionList);

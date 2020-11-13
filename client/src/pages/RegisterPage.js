@@ -47,6 +47,13 @@ export default function Register() {
         }
     };
 
+    // handle enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            register();
+        }
+    }
+
     return (
         <div className="landing-content">
             <div className="container">
@@ -68,7 +75,7 @@ export default function Register() {
                                                     let name = e.target.value;
                                                     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
                                                     setFirstNameReg(nameCapitalized);
-                                                }} />
+                                                }} required/>
                                         </div>
                                     </div>
                                     <div className="form-row">
@@ -78,7 +85,7 @@ export default function Register() {
                                                     let name = e.target.value;
                                                     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
                                                     setLastNameReg(nameCapitalized);
-                                                }} />
+                                                }} required/>
                                         </div>
                                     </div>
                                     <div className="form-row">
@@ -86,7 +93,7 @@ export default function Register() {
                                             <input type="text" placeholder="Username" maxLength="25" ref={userInput}
                                                 onChange={(e) => {
                                                     setUserNameReg(e.target.value);
-                                                }} />
+                                                }} required/>
                                         </div>
                                     </div>
                                     <div className="form-row">
@@ -94,15 +101,15 @@ export default function Register() {
                                             <input type="password" placeholder="Password" maxLength="25" ref={passwordInput}
                                                 onChange={(e) => {
                                                     setPasswordReg(e.target.value);
-                                                }} />
+                                                }} required/>
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-lg-12">
                                             <input type="password" placeholder="Re-enter Password" ref={repasswordInput}
-                                                onChange={(e) => {
+                                                onKeyDown={handleKeyDown} onChange={(e) => {
                                                     setRePasswordReg(e.target.value);
-                                                }} />
+                                                }} required/>
                                         </div>
                                     </div>
                                     <div className="form-row">
