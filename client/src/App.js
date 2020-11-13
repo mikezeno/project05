@@ -58,7 +58,7 @@ function App() {
             <Route exact path={match.path} exact component={HomePage} />
             <Route path={`${match.path}/explore`} exact component={ExplorePage} />
             <Route path={`${match.path}/ask`} exact component={AskQuestion} />
-            <Route path={`${match.path}/category/:catid`} component={QuestionList} />
+            <Route path={`${match.path}/category/:catid`} children={ <QuestionList/>} />
             <Route path={`${match.path}/question/:id/answer`} component={QuestionPage} />
             <Route path={`${match.path}/question/:id`} component={QuestionPage} />
             <Route path={`${match.path}/edit/:id`} component={QuestionEdit} />

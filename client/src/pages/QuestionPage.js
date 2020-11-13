@@ -68,6 +68,7 @@ export default function QuestionPage() {
         if (body !== '') {
             let newAnswer = {
                 body: body,
+                username: userState.username,
                 userid: userState.userId,
                 questionid: id
             }
@@ -161,7 +162,9 @@ export default function QuestionPage() {
                             <ul className="list-group list-group-flush">
                                 {hideAnswers ?
                                     <li className="list-group-item mb-3">
-                                        <h3>There are no answers for this question</h3>
+                                        <div className="d-flex w-100 justify-content-center">
+                                            <h4>There are no answers for this question</h4>
+                                        </div>
                                     </li> :
                                     answerList.map((val, key) => {
                                         return (
