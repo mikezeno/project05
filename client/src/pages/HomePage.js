@@ -54,7 +54,7 @@ export default function HomePage() {
                                                 <h3>{val.title}</h3>
                                                 <p>{val.body.length > 200 ? val.body.substring(0, 200) + '...' : val.body}</p>
                                                 <div className="d-flex w-100 justify-content-end">
-                                                    <small><span className="badge ">{val.category}</span></small>
+                                                    <p><span className="badge ">{val.category}</span></p>
                                                 </div>
                                             </div>
                                             <div className="card-footer">
