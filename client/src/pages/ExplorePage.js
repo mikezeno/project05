@@ -12,6 +12,7 @@ import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 
 export default function ExplorePage() {
 
+    // route params
     let history = useHistory();
 
     return (
@@ -28,51 +29,51 @@ export default function ExplorePage() {
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <div className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/1')}> <MovieCreationIcon /> Arts & Entertainment</div>
+                                        <div className="nav-link" activeclassname="active" onClick={() => history.push('/category/1')}> <MovieCreationIcon /> Arts & Entertainment</div>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/2')}><ComputerIcon /> Computers & Electronics </li>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/2')}><ComputerIcon /> Computers & Electronics </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/3')}><MonetizationOnIcon /> Finance & Business </li>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/4')}><FastfoodIcon /> Food & Cooking </li>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/5')}><FavoriteBorderIcon /> Health & Relationships </li>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/6')}><BrushIcon /> Hobbies & Crafts </li>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/3')}><MonetizationOnIcon /> Finance & Business </li>
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/7')}><DeckIcon /> Home & Garden </li>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/4')}><FastfoodIcon /> Food & Cooking </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/8')}><PetsIcon /> Pets & Animals </li>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/5')}><FavoriteBorderIcon /> Health & Relationships </li>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="cat-cell">
-                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/app/category/9')}><FlightTakeoffIcon /> Travel & Work </li>
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/6')}><BrushIcon /> Hobbies & Crafts </li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/7')}><DeckIcon /> Home & Garden </li>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/8')}><PetsIcon /> Pets & Animals </li>
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className="cat-cell">
+                                        <li className="nav-link" activeclassname="active" onClick={() => history.push('/category/9')}><FlightTakeoffIcon /> Travel & Work </li>
                                     </div>
                                 </div>
                             </div>

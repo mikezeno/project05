@@ -3,7 +3,7 @@ import '../style/App.css'
 import { NavData } from './NavData'
 import { useHistory, withRouter, Link } from 'react-router-dom';
 
-export default function NavMenu() {
+function NavMenu() {
     let history = useHistory();
     return (
         <div className="sidenav sticky-offset">
@@ -11,23 +11,30 @@ export default function NavMenu() {
                 {
                     NavData.map((val, key) => {
                         return (
-                            <li className="navrow" key={key} id={window.location.pathname === val.link ? "active" : ""} onClick={() => { history.push(val.link) }}>
+                            <Link className="navrow nav-link"
+                                key={key}
+                                id={window.location.pathname === val.link ? "active" : ""}
+                                style={{ textDecoration: 'none' }}
+                                to={val.link}>
                                 <div id="icon">{val.icon}</div>
                                 <div id="category">{val.title}</div>
 
-                            </li>
+                            </Link>
                         )
                     })
                 }
                 <li id="askButton-li" className="navrow">
-                    <button id="askButton" type="button" className="main-button btn btn-primary btn-lg btn-block" onClick={() => {
-                        history.push('/app/ask')
-                    }}>Ask</button>
+                    <button
+                        id="askButton"
+                        type="button"
+                        className="main-button btn btn-primary btn-lg btn-block"
+                        onClick={() => {
+                            history.push('/ask')
+                        }}>Ask</button>
                 </li>
             </ul>
         </div>
     );
 }
 
-
-// export default withRouter(NavMenu);
+export default withRouter(NavMenu);

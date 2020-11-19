@@ -7,22 +7,28 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 export default function HomePage() {
 
+    // states
     const [questionList, setQuestionList] = useState([])
-    const history = useHistory();
     const [voteState, setVoteState] = useState([])
 
+    // route params
+    const history = useHistory();
+
+    // get question list
     useEffect(() => {
         Axios.get('/question/get/').then((resp) => {
             setQuestionList(resp.data);
         });
     }, []);
 
+    // refetch list after vote
     useEffect(() => {
         Axios.get('/question/get/').then((resp) => {
             setQuestionList(resp.data);
         });
     }, [voteState])
 
+    // handle question vote
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
         let prevList = questionList
@@ -46,7 +52,7 @@ export default function HomePage() {
                                 <div className="row" key={key}>
                                     <div className="col">
                                         <div className="card">
-                                            <div className="question-body card-body" onClick={() => { history.push(`/app/question/${val.id}`) }}>
+                                            <div className="question-body card-body" onClick={() => { history.push(`/question/${val.id}`) }}>
                                                 <div className="d-flex w-100 justify-content-between">
                                                     <h5>{val.username} <span className="mb-1 text-muted">asked </span> </h5>
                                                     <small><span>{val.formatdate}</span></small>
@@ -58,7 +64,7 @@ export default function HomePage() {
                                                 </div>
                                             </div>
                                             <div className="card-footer">
-                                                <div className="card-button left" onClick={() => { history.push(`/app/question/${val.id}/answer`) }}>
+                                                <div className="card-button left" onClick={() => { history.push(`/question/${val.id}/answer`) }}>
                                                     <span> <QuestionAnswerIcon /> Answer</span>
                                                 </div>
                                                 <div className="card-button right" onClick={() => { voteQuestion(val.id) }}>

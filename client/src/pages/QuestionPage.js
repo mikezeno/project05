@@ -24,13 +24,15 @@ export default function QuestionPage() {
     const [voteState, setVoteSate] = useState(false);
 
     // data
-    const date  = new Date()
+    const date = new Date()
 
     // refs
     const bodyRef = useRef();
 
-    // get question from server
+    
     useEffect(() => {
+        
+        // get question from server
         Axios.get(`/question/get/${id}`).then((resp) => {
             if (resp.data.length === 0) {
                 setHideQuestion(true);
@@ -51,8 +53,11 @@ export default function QuestionPage() {
                 )
             }
         });
-        console.log('Route location: ' + location.pathname); //check path being passed in
 
+        //check path being passed in
+        console.log('Route location: ' + location.pathname); 
+
+        // get answers for question
         Axios.get(`/answer/get/${id}`).then((resp) => {
             if (resp.data.length === 0) {
                 setHideAnswers(true);
@@ -60,14 +65,15 @@ export default function QuestionPage() {
                 setHideAnswers(false);
                 var answers = resp.data.map(answer => (
                     {
-                        body: answer.body, 
-                        username: answer.username, 
+                        body: answer.body,
+                        username: answer.username,
                         formatdate: answer.formatdate
                     }))
                 setAnswerList(answers)
             }
         });
 
+        // open answer input 
         let path = location.pathname.slice(-6);
         if (path === 'answer') {
             $('#answerBtn').click();
@@ -75,15 +81,15 @@ export default function QuestionPage() {
 
     }, [voteState]);
 
-    // hooks
+    // set answer body focus
     useEffect(() => {
         bodyRef.current.focus();
     }, [bodyRef])
-    
+
     // add new answer
     const submitAnswer = () => {
         if (body !== '') {
-            
+
             console.log(date)
             let newAnswer = {
                 body: body,
@@ -112,7 +118,7 @@ export default function QuestionPage() {
         }
     }
 
-
+    // handle question vote
     const voteQuestion = (id) => {
         Axios.put(`/question/vote/${id}`)
         let prevQuestion = question
@@ -128,13 +134,13 @@ export default function QuestionPage() {
                 <div className="row ml-2 mb-2">
                     {hideQuestion ?
                         <h3>There is no question asked</h3> :
-                        <h1>{question.category} <span>&#62;</span> Question</h1>
+                        <h1>{question.category} <span>&#62;</span> Question {question.id}</h1>
                     }
                 </div>
                 <div className="row">
                     <div className="col">
                         <div className="card">
-                            <div className="question-body card-body" onClick={(e) => { history.push(`/app/edit/${question.id}`) }}>
+                            <div className="question-body card-body" onClick={(e) => { history.push(`/edit/${question.id}`) }}>
                                 <div className="d-flex w-100 justify-content-between">
                                     <h5>{question.username} <span className="mb-1 text-muted">asked </span> </h5>
                                     <small><span>{question.formatdate}</span></small>

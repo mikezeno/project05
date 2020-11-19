@@ -1,5 +1,5 @@
 // Imports 
-import express from 'express'; //const express = require('express')
+import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -13,7 +13,7 @@ const app = express();
 const port = 3001;
 
 // Middleware
-app.set('view engine', 'ejs'); //probably don't need
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.json());

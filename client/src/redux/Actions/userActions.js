@@ -6,8 +6,8 @@ export const userLoggedIn = (user) => {
         type: USER_LOGGEDIN,
         logged: true,
         user: user
-    }
-}
+    };
+};
 
 
 // USER_LOGGEDOUT
@@ -15,5 +15,5 @@ export const userLoggedOut = () => {
     return {
         type: USER_LOGGEDOUT,
         logged: false,
-    }
-}
+    };
+};

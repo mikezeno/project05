@@ -15,56 +15,56 @@ export const NavData = [
     {
         title: "Home",
         icon: <HomeIcon />,
-        link: "/app/home"
+        link: "/home"
     },
     {
         title: "Explore",
         icon: <ExploreIcon />,
-        link: "/app/explore"
+        link: "/explore"
     },
     {
         title: "Arts & Entertainment", 
         icon: <MovieCreationIcon />,
-        link: "/app/category/1"
+        link: "/category/1"
     },
     {
         title: "Computers & Electronics", 
         icon: <ComputerIcon />,
-        link: "/app/category/2"
+        link: "/category/2"
     },
     {
         title: "Finance & Business", 
         icon: <MonetizationOnIcon />,
-        link: "/app/category/3"
+        link: "/category/3"
     },
     {
         title: "Food & Cooking", 
         icon: <FastfoodIcon />,
-        link: "/app/category/4"
+        link: "/category/4"
     },
     {
         title: "Health & Relationships", 
         icon: <FavoriteBorderIcon />,
-        link: "/app/category/5"
+        link: "/category/5"
     },
     {
         title: "Hobbies & Crafts", 
         icon: <BrushIcon />,
-        link: "/app/category/6"
+        link: "/category/6"
     },
     {
         title: "Home & Garden", 
         icon: <DeckIcon />,
-        link: "/app/category/7"
+        link: "/category/7"
     },
     {
         title: "Pets & Animals", 
         icon: <PetsIcon />,
-        link: "/app/category/8"
+        link: "/category/8"
     },
     {
         title: "Travel & Work", 
         icon: <FlightTakeoffIcon />,
-        link: "/app/category/9"
+        link: "/category/9"
     },
 ]

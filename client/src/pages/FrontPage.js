@@ -4,6 +4,7 @@ import logo from '../images/logo.png'
 
 export default function FrontPage() {
 
+    // AskHow logo
     const sitelogo = logo
 
     return (
@@ -30,10 +31,10 @@ export default function FrontPage() {
                                 <div className="col-6">
                                     <ul className="nav nav-pills nav-fill">
                                         <li className="nav-item login">
-                                            <NavLink className="nav-link" style={{ textDecoration: 'none' }} to="/auth/login">Login</NavLink>
+                                            <NavLink className="nav-link" style={{ textDecoration: 'none' }} to="/login">Login</NavLink>
                                         </li>
                                         <li className="nav-item register">
-                                            <NavLink className="nav-link" style={{ textDecoration: 'none' }} to="/auth/register">Register</NavLink>
+                                            <NavLink className="nav-link" style={{ textDecoration: 'none' }} to="/register">Register</NavLink>
                                         </li>
                                     </ul>
                                 </div>

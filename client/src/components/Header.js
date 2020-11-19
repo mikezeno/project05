@@ -9,8 +9,13 @@ import { useSelector, useDispatch } from 'react-redux'
 
 export default function Header() {
 
+    // AskHow logo
     const sitelogo = logo
+
+    // route params
     let history = useHistory();
+
+    // redux
     const userState = useSelector(state => state);
     const loginStatus = userState.logged;
     const dispatch = useDispatch();
@@ -18,12 +23,12 @@ export default function Header() {
     return (
         // site header
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <Link className="navbar-brand" to="/" onClick={() => history.push('/')}>
-                <img src={sitelogo} width="75" height="50" className="d-inline-block align-top" alt="Site logo" loading="lazy"></img>
-                <span className="mb-0 h1">AskHow</span>
-            </Link>
-            {loginStatus &&
+            {loginStatus ?
                 <>
+                    <Link className="navbar-brand" to="/home">
+                        <img src={sitelogo} width="75" height="50" className="d-inline-block align-top" alt="Site logo" loading="lazy"></img>
+                        <span className="mb-0 h1">AskHow</span>
+                    </Link>
                     <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -35,12 +40,17 @@ export default function Header() {
                             <li className="nav-item">
                                 <Link className="nav-link" activeclassname="active" to="'/auth/front'" onClick={() => {
                                     dispatch(userLoggedOut());
-                                    history.push('/auth/front')
+                                    history.push('/')
                                 }}>Logout <ExitToAppIcon /></Link>
                             </li>
                         </ul>
                     </div>
                 </>
+                :
+                <Link className="navbar-brand" to="/">
+                    <img src={sitelogo} width="75" height="50" className="d-inline-block align-top" alt="Site logo" loading="lazy"></img>
+                    <span className="mb-0 h1">AskHow</span>
+                </Link>
             }
         </nav>
     )

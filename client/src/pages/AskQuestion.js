@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 export default function AskQuestion() {
 
+    // route params
     let history = useHistory();
 
     // states
@@ -19,11 +20,12 @@ export default function AskQuestion() {
     const titleRef = useRef();
     const bodyRef = useRef();
 
-    // hooks
+    // set input focus
     useEffect(() => {
         titleRef.current.focus();
     }, [titleRef])
 
+    // listen for category options
     useEffect(() => {
         console.log("category state= " + category)
     }, [category])
@@ -44,13 +46,12 @@ export default function AskQuestion() {
                 categoryid: category
             }).then((resp) => {
                 const questionid = resp.data.insertId
-                history.push(`/app/question/${questionid}`)
-
-            })
+                history.push(`/question/${questionid}`)
+            });
             //Add to reducer
-            // setMovieList([
-            //     ...movieList,
-            //     { name: movie, review: review }
+            // setQuestionList([
+            //     ...quesitonList,
+            //     { title: title, body: body }
             //   ]);
             titleRef.current.value = '';
             bodyRef.current.value = '';
@@ -64,8 +65,8 @@ export default function AskQuestion() {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             submitQuestion();
-        }
-    }
+        };
+    };
 
     // validate form fields
     const validateForm = () => {
@@ -74,13 +75,13 @@ export default function AskQuestion() {
             prevState.push({ bodyStatus: 'Please enter a question body.' })
             setValidation(prevState)
             bodyRef.current.focus();
-        }
+        };
         if (titleRef.current.value === '') {
             let prevState = validation;
             prevState.push({ titleStatus: 'Please enter a question title.' })
             setValidation(prevState)
             titleRef.current.focus();
-        }
+        };
     };
 
     return (
@@ -103,7 +104,7 @@ export default function AskQuestion() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="question">Question</label>
-                                <textarea className="form-control" id="quesiton" rows="3"
+                                <textarea className="form-control" id="quesiton" rows="3" maxLength="2000"
                                     placeholder="Describe your question in detail..." required
                                     onKeyDown={handleKeyDown}
                                     ref={bodyRef} onChange={(e) => {

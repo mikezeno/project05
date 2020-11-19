@@ -7,20 +7,27 @@ import { useDispatch } from 'react-redux'
 
 export default function Login() {
 
-    let history = useHistory();
+    // redux
     const dispatch = useDispatch();
 
+    // states
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [statusMsg, setStatus] = useState('');
 
+    // route params
+    let history = useHistory();
+
+    // refs
     const userInput = useRef();
     const passwordInput = useRef();
 
+    // set input focus
     useEffect(() => {
         userInput.current.focus();
     }, [userInput])
 
+    // check user login
     const login = () => {
         setStatus('')
         if (username !== '' && password !== '') {
@@ -42,7 +49,7 @@ export default function Login() {
                     }
                     dispatch(userLoggedIn(user));
                     console.log("Login Successful:" + resp.data[0].username);
-                    history.push('/app')
+                    history.push('/home')
                 }
             });
         } else {

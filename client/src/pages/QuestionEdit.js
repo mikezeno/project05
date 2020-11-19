@@ -8,29 +8,39 @@ import $ from 'jquery'
 
 export default function QuestionEdit() {
 
+    // route params
     let { id } = useParams()
     const history = useHistory();
 
+    // states
     const [question, setQuestion] = useState({})
     const [newBody, setQuestionBody] = useState('')
+    const [hideQuestion, setHideQuestion] = useState(false);
+
+    // refs
     const bodyRef = useRef();
 
+    // get question from server
     useEffect(() => {
         Axios.get(`/question/get/${id}`).then((resp) => {
             console.log(resp.data)
             setQuestion(
                 {
+                    id: resp.data[0].id,
                     title: resp.data[0].title,
                     body: resp.data[0].body,
                     votes: resp.data[0].votes,
                     userid: resp.data[0].userid,
+                    username: resp.data[0].username,
                     categoryid: resp.data[0].categoryid,
+                    category: resp.data[0].category,
                     createdate: resp.data[0].createdate,
+                    formatdate: resp.data[0].formatdate,
                 }
             )
             bodyRef.current.value = resp.data[0].body;
         })
-        
+
     }, []);
 
     // hooks
@@ -38,20 +48,21 @@ export default function QuestionEdit() {
         bodyRef.current.focus();
     }, [bodyRef])
 
+
+    // delete question
     const deleteQuestion = (id) => {
         // Prompt "Are you sure you want to delete this question"
         Axios.delete(`/question/delete/${id}`);
-        history.push(`/app/category/${question.categoryid}`)
-
-        // Redirect to Questions component
+        history.push(`/category/${question.categoryid}`)
     };
 
+    // edit question
     const submitEdit = (id) => {
-        Axios.post('/question/edit', 
-        {
-            id: id,
-            body: newBody
-        });
+        Axios.post('/question/edit',
+            {
+                id: id,
+                body: newBody
+            });
         setQuestion(
             {
                 title: question.title,
@@ -68,15 +79,23 @@ export default function QuestionEdit() {
         }
     }
 
-
     return (
         <div className="page">
             <div className="container">
+                <div className="row ml-2 mb-2">
+                    {hideQuestion ?
+                        <h3>There is no question asked</h3> :
+                        <h1>{question.category} <span>&#62;</span> Question {question.id} <span>&#62;</span> Edit</h1>
+                    }
+                </div>
                 <div className="row">
                     <div className="col">
                         <div className="card">
                             <div className="card-body">
-                                <h5>User{question.userid} asked on {question.createdate}</h5>
+                                <div className="d-flex w-100 justify-content-between">
+                                    <h5>{question.username} <span className="mb-1 text-muted">asked </span> </h5>
+                                    <small><span>{question.formatdate}</span></small>
+                                </div>
                                 <h3>{question.title}</h3>
                                 <p>{question.body}</p>
                             </div>

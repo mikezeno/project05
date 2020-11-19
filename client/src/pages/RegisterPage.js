@@ -5,25 +5,30 @@ import { useHistory  } from 'react-router-dom';
 
 export default function Register() {
     
+    // route params
     let history = useHistory();
 
+    // states
     const [firstnameReg, setFirstNameReg] = useState('');
     const [lastnameReg, setLastNameReg] = useState('');
     const [usernameReg, setUserNameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
-    const [repasswordReg, setRePasswordReg] = useState('')
+    const [repasswordReg, setRePasswordReg] = useState('');
     const [statusMsg, setStatus] = useState('');
 
+    // refs
     const fnameInput = useRef();
     const lnameInput = useRef();
     const userInput = useRef();
     const passwordInput = useRef();
     const repasswordInput = useRef();
 
+    // set input focus
     useEffect( ()=> {
         fnameInput.current.focus();
-    }, [fnameInput])
+    }, [fnameInput]);
 
+    // handle register new user
     const register = () => {
         setStatus('')
         if (firstnameReg === '' || lastnameReg === '' || usernameReg === ''
@@ -42,17 +47,17 @@ export default function Register() {
                 password: passwordReg
             }).then((resp) => {
                 console.log(resp.data);
-                history.push('/auth/login')
+                history.push('/login')
             });
-        }
+        };
     };
 
     // handle enter key press
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             register();
-        }
-    }
+        };
+    };
 
     return (
         <div className="landing-content">
@@ -126,7 +131,6 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )
