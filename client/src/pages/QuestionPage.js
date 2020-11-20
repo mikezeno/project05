@@ -52,7 +52,7 @@ export default function QuestionPage() {
                     }
                 )
             }
-        });
+        }, []);
 
         //check path being passed in
         console.log('Route location: ' + location.pathname); 
